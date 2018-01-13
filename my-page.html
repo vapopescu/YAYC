@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Open+Sans" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+      <link href="css/navbar.css" type="text/css" rel="stylesheet">
+
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+      <link href='https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,400,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+      <link href="css/style.css" rel="stylesheet">
+      <script type="text/javascript" src="js/check_login.js"></script>
+      <title>My page</title>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    </head>
+
+    <body>
+
+      <header>
+
+        <!--- DESKTOP NAVBAR -->
+        <nav class="hide-on-med-and-down">
+          <div class="nav-wrapper">
+            <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
+            <ul class="left">
+              <li class="logo"><a href="recommended.html"><img class='image-logo' src='images/logo.png'>YAYC</a></li>
+            </ul>
+            <ul class="left search_border_desktop">
+              <li><input class="search_recipe_desktop" type="search" placeholder="Search video"></li>
+              <li><a href=''><i class="material-icons" id="search_video_icon">search</i></a></li>
+            </ul>
+            <ul class="right">
+              <li><a href="my-page.html"><i class="material-icons left" id="account_icon_desktop">account_circle</i>
+                <label class="account_text_navbar">Account</label></a></li>
+            </ul>
+          </div>
+        </nav>
+
+        <!--- MOBILE NAV BAR-->
+        <nav class="nav-extended hide-on-large-only">
+          <div class="nav-wrapper">
+            <a href="#!" class="brand-logo logo"><img class='image-logo' src='images/logo.png'>a</a>
+            <a href="#" data-activates="slide-out" class="button-collapse hide-on-large-only"><i class="material-icons">menu</i></a>
+          </div>
+          <div class="nav-wrapper">
+            <ul class="left search_border_mobile">
+              <li><input class="search_recipe_mobile" type="search" value="Search video"></li>
+              <li><a href=''><i class="material-icons" id="search_video_icon">search</i></a></li>
+            </ul>
+          </div>
+        </nav>
+
+        <!-- SIDE BAR -->
+
+        <ul id="slide-out" class="side-nav">
+
+          <li><div class="user-view">
+            <div class="background">
+              <img src="images/sidebar_background.jpg">
+            </div>
+            <a href=""><img class="circle" src="images/unknown-user.png"></a>
+            <a href=""><span class="white-text name">Visitor</span></a>
+            <a href=""><span class="white-text email"></span></a>
+          </div></li>
+          <li><a class="waves-effect activee" href="my-page.html"><i class="material-icons">account_circle</i>My channel</a></li>
+          <li><a href="upload.html"><i class="material-icons">file_upload</i>Upload</a></li>
+          <li><a href="#" id="logout"><i class="material-icons">lock</i>Log Out</a></li>
+          <li><div class="divider"></div></li>
+          <!--<li><a class="subheader">Subheader</a></li>-->
+          <li><a class="subheader">View videos from</a></li>
+          <li><a class="waves-effect" href="subscriptions.html">Subscriptions</a></li>
+          <li><a class="waves-effect" href="recommended.html">Recommended</a></li>
+          <li><div class="divider"></div></li>
+          <li><a class="subheader">My subscriptions</a></li>
+          <li><a class="side_bar_subscriber_container" href=''><img src="images/subscriber_icon_demo_cat.jpeg" class='side_bar_subscriber_icon'>
+            <label class="side_bar_subscriber_title">Cat</label></a></li>
+          <li><a class="side_bar_subscriber_container" href=''><img src="images/subscriber_icon_demo_dog.jpeg" class='side_bar_subscriber_icon'>
+            <label class="side_bar_subscriber_title">Dog</label></a></li>
+        </ul>
+
+
+
+
+      </header>
+
+    <main>
+<!--banner section-->
+<div class="jumbotron jumbotron-fluid banner">
+</div>
+<!--End banner section-->
+
+<!--User details-->
+<div class="user-details">
+  <div class="container user-details2">
+    <div class="row">
+      <div class="col-md-1">
+        <img class="img-fluid" src="http://img.lum.dolimg.com/v1/images/mshs_iconarcade_rocketlocked_icn_f1b31cff.png" alt="">
+      </div>
+      <div class="col-md-3">
+        <h5>Marvel Entertainment</h5>
+        <p class="subscriber"><span id="nr-subscribers">4993</span> Subscribers</p>
+      </div>
+      <div class="col-md-8">
+      </div>
+
+    </div>
+  </div>
+</div>
+<!--End ser details-->
+
+<!--Second navigation bar-->
+<div class="container nav-wrapper2">
+  <div class="nav-wrapper">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="video-tab" data-toggle="tab" href="#videos" role="tab" aria-controls="home" aria-selected="true">Videos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="about-tab" data-toggle="tab" href="#about" role="tab" aria-controls="profile" aria-selected="false">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="edit-tab" data-toggle="tab" href="#edit" role="tab" aria-controls="profile" aria-selected="false">Edit Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="upload-tab" data-toggle="tab" href="#upload" role="tab" aria-controls="profile" aria-selected="false">Upload</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="videos" role="tabpanel" aria-labelledby="home-tab">
+        <!--Start of the first row-->
+        <div class="row">
+          <!--Mock image (6 img o each row)-->
+          <div class="col-md-2">
+            <div class="small-video-wrapper">
+              <img class="img-fluid" src="http://www.gstatic.com/tv/thumb/movieposters/170620/p170620_p_v8_al.jpg" alt="">
+              <h6 id="video-title">Marver's Runaway</h6>
+              <p class="d-inline"><span id="nr-views">42k</span> views </p>
+              <p class="d-inline"><span>4</span> days ago</p>
+            </div>
+          </div>
+          <!--End Mock image-->
+
+          <!--Mock image (6 img o each row)-->
+          <div class="col-md-2">
+            <div class="small-video-wrapper">
+              <img class="img-fluid" src="http://girlgamergalaxy.com/wp-content/uploads/2016/11/marvel.jpg" alt="">
+              <h6 id="video-title">Marver's Runaway</h6>
+              <p class="d-inline"><span id="nr-views">42k</span> views </p>
+              <p class="d-inline"><span>4</span> days ago</p>
+            </div>
+          </div>
+          <!--End Mock image-->
+
+          <!--Mock image (6 img o each row)-->
+          <div class="col-md-2">
+            <div class="small-video-wrapper">
+              <img class="img-fluid" src="http://www.gstatic.com/tv/thumb/movieposters/170620/p170620_p_v8_al.jpg" alt="">
+              <h6 id="video-title">Marver's Runaway</h6>
+              <p class="d-inline"><span id="nr-views">42k</span> views </p>
+              <p class="d-inline"><span>4</span> days ago</p>
+            </div>
+          </div>
+          <!--End Mock image-->
+
+        </div>
+        <!--End of the first row-->
+
+        <!--Start of the secon row-->
+        <div class="row">
+
+          <!--Mock image (6 img o each row)-->
+          <div class="col-md-2">
+            <div class="small-video-wrapper">
+              <img class="img-fluid" src="http://www.gstatic.com/tv/thumb/movieposters/170620/p170620_p_v8_al.jpg" alt="">
+              <h6 id="video-title">Marver's Runaway</h6>
+              <p class="d-inline"><span id="nr-views">42k</span> views </p>
+              <p class="d-inline"><span>4</span> days ago</p>
+            </div>
+          </div>
+          <!--End Mock image-->
+
+        </div>
+
+        <!--End of the second row-->
+
+      </div>
+      <!--Start of the about section-->
+      <div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="container">
+          <div class="row">
+
+            <!-- Description section -->
+
+            <div class="col-md-9">
+              <div class="desc-wrapper">
+                <dl class="row">
+                  <dt class="col-sm-3 h6">Description</dt>
+                  <dd class="col-sm-9">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</dd>
+
+                  <dt class="col-sm-3 h6">Details</dt>
+                  <dd class="col-sm-9">Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
+                  <dd class="col-sm-9 offset-sm-3">Donec id elit non mi porta gravida at eget metus.</dd>
+
+                  <dt class="col-sm-3 h6">Links</dt>
+                  <dd class="col-sm-9">A description list is perfect for defining terms.</dd>
+
+                </dl>
+              </div>
+            </div>
+
+            <!-- End Description section -->
+
+            <!-- Status section -->
+
+            <div class="col-md-3">
+              <div class="status-wrapper">
+                <ul class="list-group ">
+                  <li class="list-group-item">Status</li>
+                  <li class="list-group-item">Joined 13 Nov 2016</li>
+                  <li class="list-group-item"><span id="nr-views">123,123</span> views</li>
+                </ul>
+              </div>
+
+            </div>
+
+      <!--End  Status section -->
+          </div>
+        </div>
+      </div>
+
+      <!--End of the about section-->
+
+
+      <!--Start of the edit section-->
+      <div class="tab-pane fade" id="edit" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="container">
+
+            <!-- Form section -->
+
+            <form style="margin-top:25px" id="modify_account_form">
+              <div class="form-group row">
+                <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Description</label>
+                <div class="col-sm-10">
+                  <textarea type = "text" name="description" class="form-control form-control-lg" id="colFormLabelLg" placeholder="col-form-label-lg1"></textarea>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Details</label>
+                <div class="col-sm-10">
+                  <textarea type = "text" name="details" class="form-control form-control-lg" id="colFormLabelLg" placeholder="col-form-label-lg1"></textarea>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Links</label>
+                <div class="col-sm-10">
+                  <textarea type = "text" name="links" class="form-control form-control-lg" id="colFormLabelLg" placeholder="col-form-label-lg1"></textarea>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-10">
+                  <label for="exampleFormControlFile1" class="col-form-label col-form-label-lg">Change account cover picture</label>
+                  <input type="file" class="form-control-file" id="cover_picture" name="cover_picture">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-10">
+                  <label for="exampleFormControlFile1" class="col-form-label col-form-label-lg">Change profile picture</label>
+                  <input type="file" class="form-control-file" id="profile_picture" name="profile_picture">
+                </div>
+              </div>
+              <div class="form-group row" style="margin-top:50px">
+                <div class="col-sm-10">
+                  <button type="submit" class="btn btn-primary" id="save_account_info_button">Save</button>
+                </div>
+              </div>
+
+            </form>
+
+
+        </div>
+      </div>
+      <!-- End Upload section -->
+
+      <!--Start of the upload section-->
+      <div class="tab-pane fade" id="upload" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="container">
+
+          <form style="margin-top:25px" id="upload_video_form">
+            <div class="form-group row">
+              <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Title</label>
+              <div class="col-sm-10">
+                <textarea type = "text" class="form-control form-control-lg" id="colFormLabelLg" placeholder="col-form-label-lg1"></textarea>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Description</label>
+              <div class="col-sm-10">
+                <textarea type = "text" class="form-control form-control-lg" id="colFormLabelLg" placeholder="col-form-label-lg1"></textarea>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-10">
+                <label for="exampleFormControlFile1" class="col-form-label col-form-label-lg">Attach thumbnail to your video</label>
+                <input type="file" class="form-control-file" id="video_picture" name="video_picture">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-10">
+                <label for="exampleFormControlFile1" class="col-form-label col-form-label-lg">Attach video</label>
+                <input type="file" class="form-control-file" id="video_video" name="video_video">
+              </div>
+            </div>
+            <div class="form-group row" style="margin-top:50px">
+              <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary" id="upload_video_button">Upload</button>
+              </div>
+            </div>
+            <video id="video_temp" class='hide'></video>
+            <p id="temp"></p>
+          </form>
+        </div>
+      </div>
+      <!-- End Upload section -->
+
+    </div>
+  </div>
+</div>
+
+<!--End second navigation-->
+    </main>
+
+
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+      <script type="text/javascript" src="js/navbar.js"></script>
+      <script type="text/javascript" src="js/my-page.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+    </body>
+  </html>

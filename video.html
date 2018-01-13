@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+    <link href="css/navbar.css" type="text/css" rel="stylesheet">
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,400,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href="css/style.css" rel="stylesheet">
+
+    <title>YAYC - Video</title>
+
+  </head>
+
+  <body>
+
+
+    <header>
+
+      <!-- BANNER ABOVE THE NAVBAR ON DESKTOP -->
+      <div class="hide-on-med-and-down banner_b valign-wrapper">
+        <img class="icon_banner" src="images/banner.png"/>
+        <div class="welcome_text">
+          Yet another YouTube clone
+        </div>
+      </div>
+
+      <!--- DESKTOP NAVBAR -->
+      <nav class="hide-on-med-and-down">
+        <div class="nav-wrapper">
+          <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
+          <ul class="left">
+            <li class="logo"><a href="recommended.html"><img class='image-logo' src='images/logo.png'>YAYC</a></li>
+          </ul>
+          <ul class="left search_border_desktop">
+            <li><input class="search_recipe_desktop" type="search" placeholder="Search video"></li>
+            <li><a href=''><i class="material-icons" id="search_video_icon">search</i></a></li>
+          </ul>
+          <ul class="right">
+            <li><a href="my-page.html"><i class="material-icons left" id="account_icon_desktop">account_circle</i>
+              <label class="account_text_navbar">Account</label></a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <!--- MOBILE NAV BAR-->
+      <nav class="nav-extended hide-on-large-only">
+        <div class="nav-wrapper">
+          <a href="#!" class="brand-logo logo"><img class='image-logo' src='images/logo.png'>a</a>
+          <a href="#" data-activates="slide-out" class="button-collapse hide-on-large-only"><i class="material-icons">menu</i></a>
+        </div>
+        <div class="nav-wrapper">
+          <ul class="left search_border_mobile">
+            <li><input class="search_recipe_mobile" type="search" value="Search video"></li>
+            <li><a href=''><i class="material-icons" id="search_video_icon">search</i></a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- SIDE BAR -->
+
+      <ul id="slide-out" class="side-nav">
+
+        <li><div class="user-view">
+          <div class="background">
+            <img src="images/sidebar_background.jpg">
+          </div>
+          <a href=""><img class="circle" src="images/unknown-user.png"></a>
+          <a href=""><span class="white-text name">Visitor</span></a>
+          <a href=""><span class="white-text email"></span></a>
+          </div></li>
+        <li><a href="my-page.html"><i class="material-icons">account_circle</i>My channel</a></li>
+        <li><a href="upload.html"><i class="material-icons">file_upload</i>Upload</a></li>
+	<li><a href="#" id="logout"><i class="material-icons">lock</i>Log Out</a></li>
+        <li><div class="divider"></div></li>
+        <!--<li><a class="subheader">Subheader</a></li>-->
+        <li><a class="subheader">View videos from</a></li>
+        <li><a class="waves-effect" href="subscriptions.html">Subscriptions</a></li>
+        <li><a class="waves-effect" href="recommended.html">Recommended</a></li>
+        <li><div class="divider"></div></li>
+        <li><a class="subheader">My subscriptions</a></li>
+        <li><a class="side_bar_subscriber_container" href=''><img src="images/subscriber_icon_demo_cat.jpeg" class='side_bar_subscriber_icon'>
+          <label class="side_bar_subscriber_title">Cat</label></a></li>
+        <li><a class="side_bar_subscriber_container" href=''><img src="images/subscriber_icon_demo_dog.jpeg" class='side_bar_subscriber_icon'>
+          <label class="side_bar_subscriber_title">Dog</label></a></li>
+      </ul>
+    </header>
+
+    <main>
+      <!-- Main Layout -->
+      <div class="container mt-5 mainLayout">
+        <div class="row">
+          <div class="col-md-8">
+            <!--Video Views and like part-->
+            <h3 id="title"></h3>
+            
+            <div class="video">
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" id="main-video" allowfullscreen></iframe>
+              </div>
+            </div>
+
+            <div class="wrapperdescription">
+              <div class="channel-info container mt-2">
+                <a href="#" class="avatar float-left"><img id="channel-avatar" width="50" alt="ChannelName" /></a>
+                <div class="likes float-right">
+                  <p class="views"><label id="views"></label> Views</p>
+                  <i id="like-fa" class="fa fa-thumbs-up up mr-2"></i><span id="likes"></span>
+                  <i id="dislike-fa" class="fa fa-thumbs-down down mr-2"></i><span id="dislikes"></span>
+                </div>
+                <div class="channel-subscribe d-flex flex-column">
+                  <a href="#" class="channel-name" id="channel-name"></a>
+                  <button class="subscribe-btn" type="button" name="button">Subscribe</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="details-description">
+              <p id="published">Published on <span id="upload-date"></span></p>
+              <p id="description"></p>
+              <a href="#" class="more">Show more</a>
+            </div>
+
+            <!--Comment section-->
+            <div class="details-comments">
+
+
+              <!--User Comment-->
+              <div class="user-comment">
+                <form class="formcomment" action="" method="post">
+                  <div class="form-group d-flex d-inline">
+                    <a href="#" class="avatar"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/38273/yt-avatar-03.png" width="50" alt="UserName" /></a>
+                    <textarea id="comment-area"class="form-control ml-4" id="commentInput" rows="3" placeholder="Add a public comment…"></textarea>
+                  </div>
+
+                  <div class="button-group float-right">
+                    <input type="Reset" value="Cancel" class="btn btn-light btn-sm mr-2">
+                    <button id="comment" type="submit" class="btn btn-primary btn-sm" name="post">Post</button>
+                  </div>
+                </form>
+              </div>
+              <!-- End User Comment -->
+
+
+              <!--Others comments-->
+              <ul class="comments">
+                <li>
+                  <a href="#" class="avatar"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/38273/yt-avatar-03.png" width="50" alt="UserName" /></a>
+                  <a href="#" class="user">Will Morell</a>
+                  <span class="time">2 months ago</span>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                    aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+                  <span><i class="fa fa-thumbs-up mr-2"></i></span>
+                  <span><i class="fa fa-thumbs-down mr-2"></i></span>
+                  <span><i class="fa fa-reply mr-2"></i></span>
+                </li>
+
+                <li>
+                  <a href="#" class="avatar"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/38273/yt-avatar-03.png" width="50" alt="UserName" /></a>
+                  <a href="#" class="user">Will Morell</a>
+                  <span class="time">2 months ago</span>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                    aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+                  <span><i class="fa fa-thumbs-up mr-2"></i></span>
+                  <span><i class="fa fa-thumbs-down mr-2"></i></span>
+                  <span><i class="fa fa-reply mr-2"></i></span>
+                </li>
+
+              </ul>
+              <a href="#" class="more">Show more</a>
+            </div>
+            <!--End Comment section-->
+          </div>
+          <!--Video  Views and like End-->
+
+          <!--Tab section-->
+          <div class="col-md-4">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#related" role="tab" aria-controls="home" aria-selected="true">Related</a>
+              </li>
+            </ul>
+
+            <div class="tab-content side" id="myTabContent">
+              <div class="tab-pane fade show active" id="related" role="tabpanel" aria-labelledby="home-tab">
+                <!--MOCK video with title-->
+                <div class="d-flex flex-row playlist">
+                  <a href="#" class="sidevideo"><img class="img-fluid" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/38273/yt-avatar-02.jpg"/></a>
+                  <a href="#">
+                    <h5>Marvel's Phase 1 & 2 - A Look Back</h5>
+                    <p class="channel">by Marvel Entertainment</p>
+                    <p class="views">4,704,213 views</p>
+                  </a>
+                </div>
+                <!--MOCK video-->
+
+                <!--MOCK video with title-->
+                <div class="d-flex flex-row playlist">
+                  <a href="#" class="sidevideo"><img class="img-fluid" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/38273/yt-avatar-02.jpg"/></a>
+                  <a href="#">
+                    <h5>Marvel's Phase 1 & 2 - A Look Back</h5>
+                    <p class="channel">by Marvel Entertainment</p>
+                    <p class="views">4,704,213 views</p>
+                  </a>
+                </div>
+                <!--MOCK video-->
+
+                <!--MOCK video with title-->
+                <div class="d-flex flex-row playlist">
+                  <a href="#" class="sidevideo"><img class="img-fluid" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/38273/yt-avatar-02.jpg"/></a>
+                  <a href="#">
+                    <h5>Marvel's Phase 1 & 2 - A Look Back</h5>
+                    <p class="channel">by Marvel Entertainment</p>
+                    <p class="views">4,704,213 views</p>
+                  </a>
+                </div>
+                <!--MOCK video-->
+
+              </div>
+            </div>
+          </div>
+
+          <!--End Tab section-->
+        </div>
+      </div>
+      <!-- End Main Layout -->
+    </main>
+
+
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-dateFormat/1.0/jquery.dateFormat.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/navbar.js"></script>
+    <script type="text/javascript" src="js/video.js"></script>
+  </body>
+</html>

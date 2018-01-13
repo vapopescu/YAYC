@@ -1,0 +1,200 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.justify-text {
+  text-align: justify;
+  text-justify: inter-word;
+  font-family: 'Open Sans', sans-serif;
+  padding-top: 2px;
+}
+
+body, html {
+  overflow-x: hidden;
+}
+
+/*BANNER ABOVE THE NAVBAR*/
+
+.banner_b {
+  height: 100px;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1920px;
+}
+
+.icon_banner {
+  position: relative;
+  height: 100%;
+  object-fit: fill;
+}
+
+.welcome_text {
+  position: relative;
+  font-size: 400%;
+  clear: left;
+  left: 5%;
+  padding-bottom: 10px;
+  font-family: 'Raleway', serif;
+  z-index: 2;
+  top: 15px;
+  overflow: hidden;
+}
+
+
+/*setting the width/border banner above the nav-bar*/
+@media only screen and (min-width: 993px) { /*NU SUPPORTA 2 SETARI SIMULTAN!*/
+  .banner_b {
+    width: 88%; /*must match the container*/
+  }
+}
+
+@media only screen and (min-width: 1400px) {/*era 993 si dupa a fost 1200px*/
+  .banner_b {
+    width: 72%; /*must match the container*/
+  }
+}
+
+/*DESKTOP NAVBAR*/
+
+.left_menu_buttons_desktop {
+  float: left;
+}
+
+.right_menu_buttons_desktop {
+  float: right;
+}
+
+.search_border_desktop {
+  position: relative;
+  background-color: #ff8f00;
+  width: 50%;
+  height: 50px;
+  left: 50px;
+  top: 8px;
+}
+
+input[type='search'].search_recipe_desktop {
+  position: absolute;
+  font-style: italic;
+  left: 2%;
+  top: 4px;
+  border-bottom: none;
+  outline: none;
+  box-shadow: none;
+  width: 81%;
+  text-overflow: clip;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: white;
+}
+
+#search_video_icon {
+  position: absolute;
+  cursor: pointer;
+  right: 0px;
+  padding-left: 5%;
+  padding-right: 5%;
+  background-color: red;
+  border-left: 2px;
+  height: 50px;
+  border-color:  black;
+  border-left-style: solid;
+}
+
+.logo {
+  position: relative;
+  width: 100px;
+}
+
+.image-logo {
+  position: absolute;
+  object-fit: fill;
+  width: 70%;
+  height: 60%;
+  top: 20%;
+  margin: 0px;
+  padding: 0px;
+}
+
+.account_text_navbar {
+  font-size: 20px;
+  color: white;
+}
+
+/*MOBILE NAVBAR*/
+
+.search_border_mobile {
+  position: relative;
+  background-color: #ff8f00;
+  width: 98%;
+  height: 50px;
+  left: 1%;
+  top: 3px;
+}
+
+input[type='search'].search_recipe_mobile {
+  position: absolute;
+  font-style: italic;
+  left: 2%;
+  top: 4px;
+  border-bottom: none;
+  outline: none;
+  box-shadow: none;
+  width: 81%;
+}
+
+/*SIDE BAR*/
+
+a.waves-effect.activee  { /*!!!!element with clase multiple */
+  background-color: #ffcc00;
+}
+
+img.side_bar_subscriber_icon {
+  height: 100%;
+  width: 50px;
+  padding: 5px;
+}
+
+.side_bar_subscriber_container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.side_bar_subscriber_title {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  margin-left: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: black;
+  text-decoration: none;
+
+}
+
+/*setting the width/border of the elements inside the nav-bar*/
+
+nav .nav-wrapper {
+  max-width: 1920px;
+}
+
+@media only screen and (min-width: 993px) { /*NU SUPPORTA 2 SETARI SIMULTAN!*/
+  nav .nav-wrapper {
+    width: 88%; /*must match the container*/
+  }
+}
+
+@media only screen and (min-width: 1400px) {/*era 993*/
+  nav .nav-wrapper {
+    width: 72%; /*must match the container*/
+  }
+}
+
+@media only screen and (max-width : 992px) {
+      header, main, footer {
+        padding-left: 0;
+      }
+}

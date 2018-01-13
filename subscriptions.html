@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Open+Sans" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+      <link href="css/my_css.css" type="text/css" rel="stylesheet">
+      <link href="css/navbar.css" type="text/css" rel="stylesheet">
+      <script type="text/javascript" src="js/check_login.js"></script>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+      <title>YAYC - Subscriptions</title>
+    </head>
+
+    <body>
+
+      <header>
+
+
+        <!-- BANNER ABOVE THE NAVBAR ON DESKTOP -->
+        <div class="hide-on-med-and-down banner_b valign-wrapper">
+          <img class="icon_banner" src="images/banner.png"/>
+          <div class="welcome_text">
+            Yet another YouTube clone
+          </div>
+        </div>
+
+        <!--- DESKTOP NAVBAR -->
+        <nav class="hide-on-med-and-down">
+          <div class="nav-wrapper">
+            <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
+            <ul class="left">
+              <li class="logo"><a href="recommended.html"><img class='image-logo' src='images/logo.png'>YAYC</a></li>
+            </ul>
+            <ul class="left search_border_desktop">
+              <li><input class="search_recipe_desktop" type="search" placeholder="Search video"></li>
+              <li><a href=''><i class="material-icons" id="search_video_icon">search</i></a></li>
+            </ul>
+            <ul class="right">
+              <li><a href="my-page.html"><i class="material-icons left" id="account_icon_desktop">account_circle</i>
+                <label class="account_text_navbar">Account</label></a></li>
+            </ul>
+          </div>
+        </nav>
+
+        <!--- MOBILE NAV BAR-->
+        <nav class="nav-extended hide-on-large-only">
+          <div class="nav-wrapper">
+            <a href="#!" class="brand-logo logo"><img class='image-logo' src='images/logo.png'>a</a>
+            <a href="#" data-activates="slide-out" class="button-collapse hide-on-large-only"><i class="material-icons">menu</i></a>
+          </div>
+          <div class="nav-wrapper">
+            <ul class="left search_border_mobile">
+              <li><input class="search_recipe_mobile" type="search" value="Search video"></li>
+              <li><a href=''><i class="material-icons" id="search_video_icon">search</i></a></li>
+            </ul>
+          </div>
+        </nav>
+
+        <!-- SIDE BAR -->
+
+        <ul id="slide-out" class="side-nav">
+
+          <li><div class="user-view">
+            <div class="background">
+              <img src="images/sidebar_background.jpg">
+            </div>
+            <a href=""><img class="circle" src="images/unknown-user.png"></a>
+            <a href=""><span class="white-text name">Visitor</span></a>
+            <a href=""><span class="white-text email"></span></a>
+          </div></li>
+          <li><a href="my-page.html"><i class="material-icons">account_circle</i>My channel</a></li>
+          <li><a href="upload.html"><i class="material-icons">file_upload</i>Upload</a></li>
+          <li><a href="#" id="logout"><i class="material-icons">lock</i>Log Out</a></li>
+          <li><div class="divider"></div></li>
+          <!--<li><a class="subheader">Subheader</a></li>-->
+          <li><a class="subheader">View videos from</a></li>
+          <li><a class="waves-effect activee" href="subscriptions.html">Subscriptions</a></li>
+          <li><a class="waves-effect" href="recommended.html">Recommended</a></li>
+          <li><div class="divider"></div></li>
+          <li><a class="subheader">My subscriptions</a></li>
+          <li><a class="side_bar_subscriber_container" href=''><img src="images/subscriber_icon_demo_cat.jpeg" class='side_bar_subscriber_icon'>
+            <label class="side_bar_subscriber_title">Cat</label></a></li>
+          <li><a class="side_bar_subscriber_container" href=''><img src="images/subscriber_icon_demo_dog.jpeg" class='side_bar_subscriber_icon'>
+            <label class="side_bar_subscriber_title">Dog</label></a></li>
+        </ul>
+
+      </header>
+
+    <main>
+      <main>
+      <div class = "container">
+          <!-- Page Layout here -->
+          <div class="row">
+
+            <!-- ACTUAL CONTENT OF THE PAGE-->
+            <div class="col l12 m12 s12 justify-text">
+              <!-- NEW ROW => MAX L12-->
+              <div class="row recipes_content">
+
+                <!-- SORTING and VIEW-->
+                <div class="sort_view_box">
+                <!-- SORTING BOX-->
+                  <div class="sort_box">
+                    <label class="sort_message">Sort by:</label>
+                    <select class="sort_list" id="sort_dropdown">
+                      <option value="choose" id="choose_dropdown">Choose</option>
+                      <option value="newest">Newest</option>
+                      <option value="oldest">Oldest</option>
+                      <option value="most_liked" id="mostLiked_dropdown">Most liked</option>
+                      <option value="least_liked" id="leastLiked_dropdown">Least liked</option>
+                      <option value="most_viewed" id="mostViewed_dropdown">Most viewed</option>
+                      <option value="least_viewed" id="leastViewed_dropdown">Least viewed</option>
+                    </select>
+                  </div>
+                <!-- VIEW BOX-->
+                  <div class="view_box hide-on-med-and-down">
+                    <label class="view_message">View:</label>
+                    <i class="small material-icons view_list_button">view_list</i>
+                    <i class="small material-icons view_module_button pressed">view_module</i>
+                  </div>
+                </div>
+
+                <!--FILTER MENU-->
+                <!--
+                <div class="row">
+                  <label class="col s12 center-align filter_mobile_collapse_button">Filter
+                    <i class="material-icons colapse_filter_button_icon">arrow_drop_down</i></label>
+                </div>-->
+
+
+                <!--FILTER MENU DESKTOP-->
+                <!--
+                <div class="filter_box_mobile hide-on-med-and-down hide">
+                  <div class="row">
+                    <div class="col s6 meal_type">
+                      <h5 class="filter_title">Meal type</h5>
+                      <div class="filter_title_border"></div>
+                      <ul class="meal_type">
+                        <li><input type="checkbox" id="Breakfast_Brunch" />
+                        <label for="Breakfast_Brunch">Breakfast & Brunch</label></li>
+
+                        <li><input type="checkbox" id="Lunch"/>
+                        <label for="Lunch">Lunch</label></li>
+
+                        <li><input type="checkbox" id="Dinner" />
+                        <label for="Dinner">Dinner</label></li>
+
+                        <li><input type="checkbox" id="Appetizers" />
+                        <label for="Appetizers">Appetizers</label></li>
+
+                        <li><input type="checkbox" id="Desserts" />
+                        <label for="Desserts">Desserts</label></li>
+                      </ul>
+                    </div>
+                    <div class="col s6 cooking_style">
+                      <h5 class="filter_title">Cooking Style</h5>
+                      <div class="filter_title_border"></div>
+                      <ul class="cooking_style">
+                        <li><input type="checkbox" id="BBQ" />
+                        <label for="BBQ">BBQ</label></li>
+
+                        <li><input type="checkbox" id="Slow_Cooker" />
+                        <label for="Slow_Cooker">Slow Cooker</label></li>
+
+                        <li><input type="checkbox" id="Vegan" />
+                        <label for="Vegan">Vegan</label></li>
+
+                        <li><input type="checkbox" id="Oven" />
+                        <label for="Oven">Oven</label></li>
+                      </ul>
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="col s6 required_time">
+                    <h5 class="filter_title">Required time</h5>
+                    <div class="filter_title_border"></div>
+                    <ul class="required_time">
+                      <li><input type="checkbox" id="less_15" />
+                      <label for="less_15">< 15 mins</label></li>
+
+                      <li><input type="checkbox" id="between_15_30" />
+                      <label for="between_15_30">15 - 30 mins</label></li>
+
+                      <li><input type="checkbox" id="between_30_60" />
+                      <label for="between_30_60">30 - 60 mins</label></li>
+
+                      <li><input type="checkbox" id="more_60" />
+                      <label for="more_60">> 60 mins</label></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="row confirm_filter_button">
+                    Apply
+                </div>
+              </div>
+
+              <!--FILTER MENU MOBILE-->
+              <!--
+                <div class="filter_box_mobile hide-on-large-only">
+                  <div class="row">
+                    <div class="col s6 meal_type_mobile">
+                      <h5 class="filter_title">Meal type</h5>
+                      <div class="filter_title_border"></div>
+                      <ul class="meal_type">
+                        <li><input type="checkbox" id="Breakfast_BrunchM" />
+                        <label for="Breakfast_BrunchM">Breakfast & Brunch</label></li>
+
+                        <li><input type="checkbox" id="LunchM"/>
+                        <label for="LunchM">Lunch</label></li>
+
+                        <li><input type="checkbox" id="DinnerM" />
+                        <label for="DinnerM">Dinner</label></li>
+
+                        <li><input type="checkbox" id="AppetizersM" />
+                        <label for="AppetizersM">Appetizers</label></li>
+
+                        <li><input type="checkbox" id="DessertsM" />
+                        <label for="DessertsM">Desserts</label></li>
+                      </ul>
+                    </div>
+                    <div class="col s6 cooking_style_mobile">
+                      <h5 class="filter_title">Cooking Style</h5>
+                      <div class="filter_title_border"></div>
+                      <ul class="cooking_style">
+                        <li><input type="checkbox" id="BBQM" />
+                        <label for="BBQM">BBQ</label></li>
+
+                        <li><input type="checkbox" id="Slow_CookerM" />
+                        <label for="Slow_CookerM">Slow Cooker</label></li>
+
+                        <li><input type="checkbox" id="VeganM" />
+                        <label for="VeganM">Vegan</label></li>
+
+                        <li><input type="checkbox" id="OvenM" />
+                        <label for="OvenM">Oven</label></li>
+                      </ul>
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="col s6 required_time_mobile">
+                    <h5 class="filter_title">Required time</h5>
+                    <div class="filter_title_border"></div>
+                    <ul class="required_time">
+                      <li><input type="checkbox" id="less_15M" />
+                      <label for="less_15M">< 15 mins</label></li>
+
+                      <li><input type="checkbox" id="between_15_30M" />
+                      <label for="between_15_30M">15 - 30 mins</label></li>
+
+                      <li><input type="checkbox" id="between_30_60M" />
+                      <label for="between_30_60M">30 - 60 mins</label></li>
+
+                      <li><input type="checkbox" id="more_60M" />
+                      <label for="more_60M">> 60 mins</label></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="row confirm_filter_button_mobile">
+                    Apply
+                </div>
+              </div>-->
+
+              <!-- BORDER BETWEEN CARDS AND RECIPES -->
+              <div class="col s12 filter_title_border"></div>
+
+              <!-- CARDS/THE LIST WITH THE ACTUAL VIDEOS-->
+
+              <div class="shadow_effect">
+                <h3>Subscriptions</h3>
+                <div class="actual_list_videos">
+
+                </div>
+                <div class="col s12 load_more_recipes_button">
+                  Load more videos
+                </div>
+              </div>
+
+
+              <div class="type_display">
+                View:
+              </div>
+
+              </div>
+            </div>
+          </div>
+    </main>
+
+
+
+
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+      <script type="text/javascript" src="js/subscriptions.js"></script>
+      <script type="text/javascript" src="js/navbar.js"></script>
+    </body>
+  </html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+    <link href="css/login.css" type="text/css" rel="stylesheet">
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>YAYC - Login</title>
+  </head>
+
+  <body>
+    <main>
+      <div class = "container background_login">
+        <!-- Page Layout here -->
+        <div class="row">
+
+          <!-- ACTUAL CONTENT OF THE PAGE-->
+          <div class="col l12 m12 s12 background_login justify-text">
+            <!-- NEW ROW => MAX L12-->
+
+            <div class="register_box">
+              <p class="information_message">In order to use YAYC you need to be logged in.</p>
+              <p class="information_message">If you do not have an account please fill in the fields and press the register button bellow</p>
+              <h4></h4>
+              <form id="register_form">
+                <div class="form-group">
+                  <label class="fields_description">Username</label>
+                  <input type="text" class="form-control" placeholder="Username" name="username" pattern=".{4,15}">
+                  <small class="form-text text-muted">Username should contain between 4 and 15 characters</small>
+                </div>
+                <p></p>
+                <div class="form-group">
+                  <label class="fields_description">Password</label>
+                  <input type="password" class="form-control" placeholder="Password" name="password" pattern=".{8,15}">
+                  <small class="form-text text-muted">Password should contain between 8 and 15 characters. Never share your password with anyone</small>
+                </div>
+                <button type="submit" value="token" class="btn btn-primary">Login</button>
+                <button type="submit" value="user" class="btn btn-primary right">Register</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+
+
+
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
+  </body>
+</html>

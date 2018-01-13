@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.justify-text {
+  text-align: justify;
+  text-justify: inter-word;
+  font-family: 'Open Sans', sans-serif;
+  padding-top: 2px;
+}
+
+body, html {
+  overflow-x: hidden;
+}
+
+.background_login {
+  position: absolute;
+  width: 100vw;/*width of the screen*/
+  height: 100vh;/*height of the screen*/
+  z-index: 10;
+  background-color: rgba(38, 37, 37, 0.74);
+  left: 0px;
+}
+
+.register_box {
+  position: relative;
+  height: 60%;
+  width: 90%;
+  top: 20%;
+  bottom: 20%;
+  background-color: white;
+  margin: auto;
+  min-width: 500px;
+  min-height: 470px;
+  max-width: 900px;
+  max-height: 900px;
+  padding: 2%;
+  overflow: hidden;
+}
+
+.fields_description {
+  font-size: 20px;
+}
+
+.information_message {
+  font-size: 20px;
+}
+
+#error_message {
+  font-size: 20px;
+  margin-top: 20px;
+  color: red;
+}
+
+@media only screen and (max-width : 992px) {
+      header, main, footer {
+        padding-left: 0;
+      }
+}

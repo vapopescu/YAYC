@@ -1,0 +1,8 @@
+12/01/2018 22:13:
+
+added check_login.js to redirect the user to login page in case it is not logged in (to be added to video, user-page my-page)
+updated navbar.js to dinamically add the list of subscribers from the slide menu
+fixes to recommend.html and subscriptions.html
+
+-----------------------------------------
+
