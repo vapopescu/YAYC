@@ -33,7 +33,7 @@ $(document).ready( () => {
   // function to load content
   var loadContent = function() {
     // load user data
-    var userData = loadUser();
+    var userData = loadUserData();
 
     // get the video id from the url
     var video_id = getUrlParameter("id");
