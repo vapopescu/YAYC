@@ -192,6 +192,11 @@ label.filter_mobile_collapse_button {
   display: block;
 }
 
+/* adjusting the title */
+#searching_title {
+  text-align: left;
+}
+
 /* CARD */
 .card_ {
   padding: 0.8rem 0.8rem!important;

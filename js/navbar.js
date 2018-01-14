@@ -151,5 +151,30 @@ $(document).ready(() => {
     }
   }
 
+  function search_for_mobile() {
+    search_for_m = $('.search_recipe_mobile').val();
+    console.log(search_for_m);
+    redirect_to(search_for_m);
+  }
+
+  function search_for_desktop() {
+    search_for_d = $('.search_recipe_desktop').val();
+    console.log(search_for_d);
+    redirect_to(search_for_d);
+  }
+
+  function redirect_to(query) {
+    window.location.replace("searched.html?query=" + query);
+  }
+
+  $("#search_video_icon_m").on("click", event => {
+    console.log("clicked");
+    search_for_mobile();
+  })
+
+  $("#search_video_icon_d").on("click", event => {
+    console.log("clicked");
+    search_for_desktop();
+  })
 
 })
