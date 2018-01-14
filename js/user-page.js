@@ -8,7 +8,7 @@ $(document).ready(() => {
       var date;
       this.card_video_id = card_video_id;
       this.card_title = card_title;
-      this.card_created_date_string = card_created_date;  
+      this.card_created_date_string = card_created_date;
       this.date = new Date(card_created_date);
       this.card_created_date_short = this.date.getFullYear() + '-' + this.date.getMonth() + 1 + '-' + this.date.getDate();
       this.card_views = card_views;
@@ -64,76 +64,25 @@ $(document).ready(() => {
 
 // --------------------- AJAX REQUESTS/POSTS ---------------------
 
-  function apiRequest (requestType, requestBody, requestPath, token) {
-    var urlBase = 'http://vps500832.ovh.net/api/v1/';
-
-    var returnObject = {
-      statusCode: null,
-      response: null
-    };
-
-    $.ajax({
-    async: false,
-    cache: false,
-    type: requestType,
-    data: requestBody,
-    dataType: 'application/json',
-    headers: {
-      'Auth-Token': token
-    },
-    error: function (xHR, status, error) {
-      returnObject.statusCode = xHR.status;
-      returnObject.response = JSON.parse(xHR.responseText);
-    },
-    success: function(result, status, xHR) {
-      returnObject.statusCode = status;
-      returnObject.response = result;
-
-    },
-    url: urlBase + requestPath,
-  });
-
-  /* automatically renew the token */
-  if(returnObject.statusCode == 401) {
-    var userData = loadUserData();
-    var response = apiRequest("POST", userData, 'token', null);
-    console.log("Error in ajax, user not logged in: " + requestPath);
-  }	else if(returnObject.statusCode != 200) {
-      console.log("Error in ajax: " + requestPath + " " + returnObject.statusCode + " " + returnObject.response);
-      return;
-  } else {
-    console.log("Succes in ajax: " + requestPath);
-  }
-
-   return returnObject;
-  };
 
 //------------------- FUNCTIONS FOR AJAX --------------------------
 
-function loadUserData () {
-  return JSON.parse(localStorage.getItem("userData"));
-  };
-
   function retrieve_user_info(userData) {
-    data = apiRequest("GET", null, "user/" + userData.id + "?load=videos", userData.token);
+    data = apiRequest("GET", null, "user/" + userPageID + "?load=videos,subscribers", userData.token);
     if (data != null) {
       console.log("User info retrieved succesfully!");
       construct_card_videos(data.response.videos);
+      insert_html_info(data.response);
     } else {
       console.log("Error in retrieving subscribers list");
     }
   }
 
-  /* delete the user data from the local storage */
-  function deleteUserData() {
-    localStorage.removeItem("userData");
-    console.log("Signed out:");
-    console.log("User details: " + localStorage.getItem("userData"));
-  }
 
 //------------------- FUNCTIONS FOR HTML --------------------------
 
   var carduri = [];
+  var userPageID = "";
 
   //only thing to be executed at the begining
   setup();
@@ -142,9 +91,9 @@ function loadUserData () {
 //retrieve data for subscribers from server only if user is loged in
   function setup() {
     userData = loadUserData();
-    if (userData != null) {
+    userPageID = getUrlParameter("id");
+    if (userData != null && userPageID != null) {
       console.log("setup() user-page.js: Name:" + userData.name + " Token:" + userData.token);
-      //retrieve_cards();//to be deleted
       retrieve_user_info(userData);
     } else {
       console.log("setup(): Error, user is not logged in! No videos to retrieve");
@@ -166,6 +115,17 @@ function loadUserData () {
     init();
   }
 
+  //insert in html the necessary data of the user
+    function insert_html_info(data) {
+      $("#user_avatar_url").attr("src", data.avatar_url);
+      $("#user_name").text(data.name);
+      $("#nr-subscribers").text(data.subscribers.length);
+      $("#user_description_text").text(data.description);
+      $("#user_details_text").text(data.details);
+      $("#user_details_links").text(data.links);
+      $("#user_created_date").text("Joined: " + data.created_at);
+      $("#user_lastUpdate_date").text("Last update: " + data.updated_at);
+    }
 
 //insert in the html page
   function appendVideosHtml(index) {
