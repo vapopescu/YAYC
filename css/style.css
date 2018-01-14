@@ -99,12 +99,22 @@ button#unsubscribe{
 
 .likes i{
   font-size: 20px;
-  opacity: 0.7;
+  opacity: 0.4;
 }
 
 .likes i:hover{
   cursor: pointer;
-  opacity: 0.9;
+  opacity: 0.6;
+}
+
+.likes i.pressed{
+  font-size: 20px;
+  opacity: 0.8;
+}
+
+.likes i.pressed:hover{
+  cursor: pointer;
+  opacity: 1;
 }
 
 .likes span{
@@ -280,7 +290,7 @@ ul.comments{
   margin-left: 10px;
 }
 
-/*User page*/
+/* User page */
 .banner{
   height: 200px;
 }
