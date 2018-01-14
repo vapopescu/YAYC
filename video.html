@@ -111,16 +111,16 @@
 
             <div class="wrapperdescription">
               <div class="channel-info container mt-2">
-                <a class="avatar float-left"><img id="channel-avatar" width="50" alt="ChannelName" /></a>
+                <a class="avatar float-left"><img href="#" id="channel-avatar" width="50" alt="ChannelName" /></a>
                 <div class="likes float-right">
                   <p class="views"><label id="views"></label> Views</p>
                   <i id="like" class="fa fa-thumbs-up mr-2" name="up"></i><span id="likes"></span>
                   <i id="dislike" class="fa fa-thumbs-down mr-2" name="down"></i><span id="dislikes"></span>
                 </div>
                 <div class="channel-subscribe d-flex flex-column">
-                  <a class="channel-name" id="channel-name"></a>
-                  <button id="subscribe">Subscribe</button>
-                  <button id="unsubscribe">Unubscribe</button>
+                  <a href="#" class="channel-name" id="channel-name"></a>
+                  <button id="subscribe" style="display:none">Subscribe</button>
+                  <button id="unsubscribe" style="display:none">Unubscribe</button>
                 </div>
               </div>
             </div>
@@ -128,7 +128,6 @@
             <div class="details-description">
               <p id="published">Published on <span id="upload-date"></span></p>
               <p id="description"></p>
-              <a href="#" class="more">Show more</a>
             </div>
 
             <!--Comment section-->
@@ -137,15 +136,15 @@
 
               <!--User Comment-->
               <div class="user-comment">
-                <form class="formcomment" action="" method="post">
+                <form class="formcomment" id="user-comment">
                   <div class="form-group d-flex d-inline">
-                    <a href="#" class="avatar"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/38273/yt-avatar-03.png" width="50" alt="UserName" /></a>
-                    <textarea id="comment-area"class="form-control ml-4" id="commentInput" rows="3" placeholder="Add a public comment…"></textarea>
+                    <a href="#" class="avatar"><img width="50" alt="UserName" /></a>
+                    <textarea id="comment-input" class="form-control ml-4" rows="3" pattern=".{4,15}" placeholder="Add a public comment…"></textarea>
                   </div>
 
                   <div class="button-group float-right">
-                    <input type="Reset" value="Cancel" class="btn btn-light btn-sm mr-2">
-                    <button id="comment" type="submit" class="btn btn-primary btn-sm" name="post">Post</button>
+                    <input type="reset" class="btn btn-light btn-sm mr-2" value="Cancel" >
+                    <button type="submit" class="btn btn-primary btn-sm" id="comment">Post</button>
                   </div>
                 </form>
               </div>
@@ -154,32 +153,18 @@
 
               <!--Others comments-->
               <ul class="comments">
-                <li>
-                  <a href="#" class="avatar"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/38273/yt-avatar-03.png" width="50" alt="UserName" /></a>
-                  <a href="#" class="user">Will Morell</a>
-                  <span class="time">2 months ago</span>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                    aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <li id="comment-template" style="display:none">
+                  <a href="#" class="avatar"><img width="50" alt="UserName" /></a>
+                  <a href="#" class="user"></a>
+                  <span class="time"></span>
+                  <p></p>
 
                   <span><i class="fa fa-thumbs-up mr-2"></i></span>
                   <span><i class="fa fa-thumbs-down mr-2"></i></span>
                   <span><i class="fa fa-reply mr-2"></i></span>
                 </li>
-
-                <li>
-                  <a href="#" class="avatar"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/38273/yt-avatar-03.png" width="50" alt="UserName" /></a>
-                  <a href="#" class="user">Will Morell</a>
-                  <span class="time">2 months ago</span>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                    aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-                  <span><i class="fa fa-thumbs-up mr-2"></i></span>
-                  <span><i class="fa fa-thumbs-down mr-2"></i></span>
-                  <span><i class="fa fa-reply mr-2"></i></span>
-                </li>
-
               </ul>
-              <a href="#" class="more">Show more</a>
+              <a href="#" class="more" id="comments-more">Show more</a>
             </div>
             <!--End Comment section-->
           </div>
