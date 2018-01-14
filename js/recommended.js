@@ -165,7 +165,6 @@ $(document).ready(() => {
       card_views = data[i].view_count;
       card_likes = data[i].likes;
       card_image = data[i].thumbnail_url;
-      console.log(card_likes + " P");
       carduri.push(new cards_video(card_video_id, card_title, card_author, card_author_id, card_text, card_created_date, card_views, card_likes, card_image));
       //console.log(carduri[0] + "aaa");
     }
@@ -176,7 +175,7 @@ $(document).ready(() => {
   //retrieve data for videos from server only if user is loged in
   function setup() {
     userData = loadUserData();
-
+    //console.log(userData);
     retrieve_videos(userData);
   }
 
