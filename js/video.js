@@ -1,8 +1,10 @@
 var userData = null;
+var userDetails = null;
 var videoData = null;
 var channelData = null;
 var voteData = null;
 var subscriptionData = null;
+var nextCommentIdx = null;
 
 $(document).ready(function() {
 
@@ -159,6 +161,47 @@ $(document).ready(function() {
     $('#unsubscribe').hide();
   });
 
+  // function to show more comments
+  $('#comments-more').on('click', function(e) {
+    e.preventDefault();
+
+    // get 5 comments
+    for (var i = 0; i < 5; i ++) {
+      if (nextCommentIdx < 0) {
+        return;
+      }
+
+      getComment(nextCommentIdx--).show().appendTo("ul.comments");
+    }
+  });
+
+  // function to construct a comment
+  var getComment = function(index) {
+    var commentData = videoData.comments[index];
+    var commentObject = $("#comment-template").clone();
+
+    // get poster data
+    var returnObject = apiRequest("GET", null, "user/" + commentData.user_id, userData.token);
+    //console.log(returnObject);
+    var posterData = returnObject.response;
+
+    // error handling
+    if (returnObject.statusCode != 200) {
+      return;
+    }
+
+    // fill the comment
+    commentObject.removeAttr("id");
+    commentObject.find("a.avatar").attr("href", "user-page.html?id=" + posterData.id);
+    commentObject.find("a.avatar img").attr("src", posterData.avatar_url);
+    commentObject.find("a.user").attr("href", "user-page.html?id=" + posterData.id);
+    commentObject.find("a.user").text(posterData.name);
+    commentObject.find("span.time").text($.format.date(commentData.created_at, "MMM dd, yyyy"));
+    commentObject.find("p").text(commentData.content);
+
+    return commentObject;
+  }
+
   // function to load video data
   var loadVideoData = function(video_id) {
     var responseObject = apiRequest("GET", null, "video/" + video_id + "?load=votes,comments", userData.token);
@@ -178,8 +221,19 @@ $(document).ready(function() {
     // load user data
     userData = loadUserData();
 
+    // send a request to get user details
+    responseObject = apiRequest("GET", null, "user/" + userData.id, userData.token);
+    //console.log(responseObject);
+    userDetails = responseObject.response;
+
+    // populate the page
+    $("#user-comment a.avatar").attr("href", "my-page.html");
+    $("#user-comment a.avatar img").attr("src", userDetails.avatar_url);
+
     // send a request to get video information
     videoData = loadVideoData(getUrlId());
+    nextCommentIdx = videoData.comments.length - 1;
+    $("#comments-more").click();
 
     // populate the page
     $("#title").text(videoData.name);
@@ -208,14 +262,10 @@ $(document).ready(function() {
     }
 
     // send a request to get channel information
-    responseObject = apiRequest("GET", null, "user/" + videoData.user_id + "?load=subscribers", userData.token);
-    side_videos_data = apiRequest("GET", null, 'user/' + videoData.user_id + '?load=subscriptions.target.videos', userData.token); //retrieve data for videos
-    if (side_videos_data) {
-      //console.log(side_videos_data.response);
-      construct_card_videos(side_videos_data.response.subscriptions);
-    }
+    responseObject = apiRequest("GET", null, "user/" + videoData.user_id + "?load=subscribers,subscriptions.target.videos", userData.token);
     //console.log(responseObject);
     channelData = responseObject.response;
+    construct_card_videos(channelData.subscriptions);
 
     // populate the page
     $("#channel-avatar").attr("src", channelData.avatar_url);

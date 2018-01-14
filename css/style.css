@@ -76,7 +76,6 @@ button#subscribe{
   width: 80px;
   margin-left: 20px;
   margin-bottom: 20px;
-  display: none;
 }
 
 button#unsubscribe{
@@ -88,7 +87,6 @@ button#unsubscribe{
   width: 80px;
   margin-left: 20px;
   margin-bottom: 20px;
-  display: none;
 }
 
 @media screen and (max-width: 699px) {
