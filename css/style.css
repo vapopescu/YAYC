@@ -4,6 +4,18 @@ body{
   font: 0.8125em/1.3077em Roboto, arial, sans-serif;
 }
 
+/* Related videos video.html */
+
+#related_video_image {
+  min-width: 60px;
+  width: auto;
+}
+
+#related_video_title {
+  overflow: hidden;
+  width: 150px;
+}
+
 /* Video */
 ul.sentiment{
   float: right;

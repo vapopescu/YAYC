@@ -6,6 +6,44 @@ var subscriptionData = null;
 
 $(document).ready(function() {
 
+
+  var carduri =[];
+  const CARDS_TO_LOAD = 10;
+  class cards_video {
+
+    constructor(card_video_id, card_title, card_author, card_views, card_image) {
+      this.card_video_id = card_video_id;
+      this.card_title = card_title;
+      this.card_author = card_author;
+      this.card_views = card_views;
+      this.card_image = card_image;
+      this.card_video_link = "video.html?id=" + this.card_video_id;
+      var text_cards="";
+      this.generate_html_text_card();
+    }
+
+    generate_html_text_card() {
+      this.text_card =
+        `<div class="d-flex flex-row playlist">
+          <a href="#" class="sidevideo"><img class="img-fluid" id="related_video_image" src="` + this.card_image + `"/></a>
+          <a href="` + this.card_video_link + `">
+            <h5 id="related_video_title">` + this.card_title + `</h5>
+            <p class="channel">by` + this.card_author + `</p>
+            <p class="views">` + this.card_views + ` views</p>
+          </a>
+        </div>`
+    }
+
+    get html_text_card() {
+      return this.text_card;
+    }
+
+    get cardID() {
+      return this.card_id;
+    }
+
+  }
+
   // function to insert comments
   $('#comment').on('click', () => {
     var comment = $('#comment-area').val();
@@ -80,7 +118,7 @@ $(document).ready(function() {
     $("#likes").text(videoData.likes);
     $("#dislikes").text(videoData.dislikes);
   });
-  
+
   // function to subscribe
   $('#subscribe').on('click', function() {
     var body = {
@@ -142,7 +180,7 @@ $(document).ready(function() {
 
     // send a request to get video information
     videoData = loadVideoData(getUrlId());
-    
+
     // populate the page
     $("#title").text(videoData.name);
     $("#main-video").attr("src", videoData.video_url);
@@ -171,6 +209,11 @@ $(document).ready(function() {
 
     // send a request to get channel information
     responseObject = apiRequest("GET", null, "user/" + videoData.user_id + "?load=subscribers", userData.token);
+    side_videos_data = apiRequest("GET", null, 'user/' + videoData.user_id + '?load=subscriptions.target.videos', userData.token); //retrieve data for videos
+    if (side_videos_data) {
+      //console.log(side_videos_data.response);
+      construct_card_videos(side_videos_data.response.subscriptions);
+    }
     //console.log(responseObject);
     channelData = responseObject.response;
 
@@ -195,7 +238,41 @@ $(document).ready(function() {
       $("#unsubscribe").show();
     }
   }
-  
+
   setup();
-  
+
+  //create the card_video objects
+  function construct_card_videos(data) {
+    console.log(data);
+    console.log("data length: " + data.length);
+    for (i = 0; i < data.length; i++)
+      for (j = 0; j < data[i].target.videos.length; j++){
+        card_video_id = data[i].target.videos[j].id;
+        card_title = data[i].target.videos[j].name;
+        card_author = data[i].target.name;
+        card_views = data[i].target.videos[j].view_count;
+        card_image = data[i].target.videos[j].thumbnail_url;
+        carduri.push(new cards_video(card_video_id, card_title, card_author, card_views, card_image));
+        //console.log(carduri[0] + "aaa");
+    }
+  init();
+  }
+
+  //insert the cards_video objects on the right side of the html
+  function init() {
+    for (i = 0; i < CARDS_TO_LOAD && i < carduri.length; i++) {
+      console.log(i);
+      appendCardsHtml(i);
+    }
+  }
+
+  //insert the cards_video object on the right side of the html
+  function appendCardsHtml(index) {
+    if (index == carduri.length) {
+      console.log("End in append " + index);
+      return; //avoid errors
+    }
+    $("#related").append(carduri[index].html_text_card);
+  }
+
 });

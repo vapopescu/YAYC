@@ -40,35 +40,35 @@ $(document).ready(() => {
     generate_html_text_card() {
       this.text_card =
         `<div class = "card_box hoverable">
-<div class="card_image_container">
-<img class="card_image" src=` + this.card_image + `>
-<div class="card_time_box"><i class="material-icons card_time_icon">access_time</i>
-<label class="card_time_text">` + '2' + `</label>
-</div>
-</div>
-<div class="card_title ellipsis">
-<div>
-<a href="`+ this.card_video_link + `">` +
-        this.card_title +
-        `</a>
-</div>
-</div>
-<div class="card_box_author">
-<a href="`+ this.card_author_link + `">` + this.card_author + `</a>
-</div>
-<div class="card_box_views">
-<label>` + this.card_views + `</label>
-</div>
-<div class="justify-text card_text ellipsis_summary">
-<div>
-<p>`
-        + this.card_text +
-        `</p>
-</div>
-</div>
-<div class="id" id="` + this.card_id  + `"></div>
-</div>
-</div>`
+          <div class="card_image_container">
+            <img class="card_image" src=` + this.card_image + `>
+              <div class="card_time_box"><i class="material-icons card_time_icon">access_time</i>
+                <label class="card_time_text">` + '2' + `</label>
+              </div>
+            </div>
+            <div class="card_title ellipsis">
+              <div>
+                <a href="`+ this.card_video_link + `">` +
+                  this.card_title +
+                `</a>
+              </div>
+            </div>
+            <div class="card_box_author">
+              <a href="`+ this.card_author_link + `">` + this.card_author + `</a>
+            </div>
+            <div class="card_box_views">
+              <label>` + this.card_views + `</label>
+            </div>
+            <div class="justify-text card_text ellipsis_summary">
+              <div>
+                <p>`
+                + this.card_text +
+                `</p>
+              </div>
+            </div>
+            <div class="id" id="` + this.card_id  + `"></div>
+          </div>
+        </div>`
     }
 
     get html_text_card() {
