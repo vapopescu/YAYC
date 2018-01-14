@@ -138,7 +138,7 @@ $(document).ready(() => {
       data = apiRequest_explicit("POST", formdata, "user/" + userData.id, userData.token);
       if (data.statusCode == 200) {
         alert("Updated succesfully.");
-        //window.location.replace("my-page.html");
+        window.location.replace("my-page.html");
       } else {
         alert("Error in updating your profile. Please try again.");
       }

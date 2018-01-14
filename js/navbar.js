@@ -88,10 +88,13 @@ $(document).ready(() => {
     if (data != null) {
       console.log("Subscribers list retrieved succesfully!");
       constructSubscribers(data.response.subscriptions);
+      insert_info_account(data.response);
     } else {
       console.log("Error in retrieving subscribers list");
     }
   }
+
+
 
   //------------------- FUNCTIONS FOR HTML --------------------------
 
@@ -112,7 +115,9 @@ $(document).ready(() => {
   //retrieve data for subscribers from server only if user is loged in
   function setup() {
     var userData = loadUserData();
-    retrieve_subscribers(userData);
+    if (userData != null) {
+      retrieve_subscribers(userData);
+    }
   }
 
   //generate the subscriber objects
@@ -126,6 +131,11 @@ $(document).ready(() => {
     }
     //start adding the subscribers to the slide menu
     init();
+  }
+
+  function insert_info_account(data) {
+    $(".white-text.name").text(data.name);
+    $("img.circle").attr("src", data.avatar_url);
   }
 
 
