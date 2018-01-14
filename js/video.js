@@ -1,11 +1,13 @@
 var userData = null;
-var subscription_id = null;
+var videoData = null;
+var channelData = null;
+var voteData = null;
+var subscriptionData = null;
 
-$(document).ready( () => {
+$(document).ready(function() {
 
   // function to insert comments
-  $('#comment').on('click', (e) => {
-    e.preventDefault();
+  $('#comment').on('click', () => {
     var comment = $('#comment-area').val();
     $('ul.comments').prepend(`<li>
         <a href="#" class="avatar"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/38273/yt-avatar-03.png" width="50" alt="UserName" /></a>
@@ -19,78 +21,179 @@ $(document).ready( () => {
     );
   });
 
-  // function to add likes
-  $('#like-fa').on('click', (e) => {
-    var nr = $('#likes').text();
-    nr = parseInt(nr)+1;
-    $("#likes").text(nr);
-  });
-  
-  // function to add dislikes
-  $('#dislike-fa').on('click', (e) => {
-    var nr = $('#dislikes').text();
-    nr = parseInt(nr)+1;
-    $("#dislikes").text(nr);
+  // function to like/dislike
+  $('#like, #dislike').on('click', function() {
+    var body = {
+        video_id: videoData.id,
+        type: $(this).attr("name")
+      }
+
+    if (voteData == null) {
+      var returnObject = apiRequest("POST", body, "vote/", userData.token);
+      //console.log(returnObject);
+
+      // error handling
+      if (returnObject.statusCode != 200) {
+        return;
+      }
+
+      // update vote data
+      voteData = returnObject.response;
+    } else {
+      if (voteData.type == body.type) {
+        var returnObject = apiRequest("DELETE", body, "vote/" + voteData.id, userData.token);
+        //console.log(returnObject);
+
+        // error handling
+        if (returnObject.statusCode != 200) {
+          return;
+        }
+
+        // update vote data
+        voteData = null;
+      } else {
+        var returnObject = apiRequest("PUT", body, "vote/" + voteData.id, userData.token);
+        console.log(returnObject);
+
+        // error handling
+        if (returnObject.statusCode != 200) {
+          return;
+        }
+
+        // update vote data
+        voteData = returnObject.response;
+
+        if (body.type == "up") {
+          $("#dislike").removeClass("pressed");
+        } else if (body.type == "down") {
+          $("#like").removeClass("pressed");
+        }
+      }
+    }
+
+    $(this).toggleClass("pressed");
+
+    // update video information
+    videoData = loadVideoData(videoData.id);
+
+    // update vote count
+    $("#likes").text(videoData.likes);
+    $("#dislikes").text(videoData.dislikes);
   });
   
   // function to subscribe
-  $('#subscribe').on('click', (e) => {
+  $('#subscribe').on('click', function() {
+    var body = {
+      target_user_id: channelData.id
+    }
 
+    var returnObject = apiRequest("POST", body, "subscription/", userData.token);
+    //console.log(returnObject);
+
+    // error handling
+    if (returnObject.statusCode != 200) {
+      return;
+    }
+
+    // update subscription data
+    subscriptionData = returnObject.response;
+
+    // toggle the buttons
+    $('#subscribe').hide();
+    $('#unsubscribe').show();
   });
+
+  // function to unsubscribe
+  $('#unsubscribe').on('click', function() {
+    var returnObject = apiRequest("DELETE", null, "subscription/" + subscriptionData.id, userData.token);
+    //console.log(returnObject);
+
+    // error handling
+    if (returnObject.statusCode != 200) {
+      return;
+    }
+
+    // update subscription data
+    subscriptionData = null;
+
+    // toggle the buttons
+    $('#subscribe').show();
+    $('#unsubscribe').hide();
+  });
+
+  // function to load video data
+  var loadVideoData = function(video_id) {
+    var responseObject = apiRequest("GET", null, "video/" + video_id + "?load=votes,comments", userData.token);
+    //console.log(responseObject);
+
+    // error handling
+    if (responseObject.statusCode != 200) {
+      alert("Invalid video id.");
+      return null;
+    }
+
+    return responseObject.response;
+  }
 
   // function to load content
   var setup = function() {
     // load user data
     userData = loadUserData();
 
-    // get the video id from the url
-    var video_id = getUrlId();
-
     // send a request to get video information
-    var videoDetails = apiRequest("GET", null, "video/" + video_id + "?load=votes,comments", userData.token);
-    console.log(videoDetails);
-
-    // error handling
-    if (videoDetails.statusCode == 404) {
-      alert("Invalid video id.");
-      return;
-    }
+    videoData = loadVideoData(getUrlId());
     
     // populate the page
-    $("#title").text(videoDetails.response.name);
-    $("#main-video").attr("src", videoDetails.response.video_url);
-    $("#views").text(videoDetails.response.view_count);
-    $("#likes").text(videoDetails.response.likes);
-    $("#dislikes").text(videoDetails.response.dislikes);
-    $("#description").text(videoDetails.response.description);
-    $("#upload-date").text($.format.date(videoDetails.response.created_at, "MMM dd, yyyy"));
+    $("#title").text(videoData.name);
+    $("#main-video").attr("src", videoData.video_url);
+    $("#views").text(videoData.view_count);
+    $("#likes").text(videoData.likes);
+    $("#dislikes").text(videoData.dislikes);
+    $("#description").text(videoData.description);
+    $("#upload-date").text($.format.date(videoData.created_at, "MMM dd, yyyy"));
+
+    // check if the user has voted
+    for (var i = 0; i < videoData.votes.length; i++) {
+      if (videoData.votes[i].user_id == userData.id) {
+        voteData = videoData.votes[i];
+        break;
+      }
+    }
+
+    // press the corresponding button
+    if (voteData != null) {
+      if (voteData.type == "up") {
+        $("#like").addClass("pressed");
+      } else if (voteData.type == "down") {
+        $("#dislike").addClass("pressed");
+      }
+    }
 
     // send a request to get channel information
-    var channelDetails = apiRequest("GET", null, "user/" + videoDetails.response.user_id + "?load=subscribers", userData.token);
-    console.log(channelDetails);
+    responseObject = apiRequest("GET", null, "user/" + videoData.user_id + "?load=subscribers", userData.token);
+    //console.log(responseObject);
+    channelData = responseObject.response;
 
     // populate the page
-    $("#channel-avatar").attr("src", channelDetails.response.avatar_url);
-    $("#channel-name").text(channelDetails.response.name);
-
-    // get the channel subscribel list
-    var subs = channelDetails.response.subscribers;
+    $("#channel-avatar").attr("src", channelData.avatar_url);
+    $("#channel-avatar").closest("a").attr("href", "user-page.html?id=" + channelData.id);
+    $("#channel-name").text(channelData.name);
+    $("#channel-name").attr("href", "user-page.html?id=" + channelData.id);
 
     // check if the user is subscribed
-    for (var i = 0; i < subs.length; i++) {
-      if (subs[i].source_user_id == userData.id) {
-        subscription_id = subs[i].id;
+    for (var i = 0; i < channelData.subscribers.length; i++) {
+      if (channelData.subscribers[i].source_user_id == userData.id) {
+        subscriptionData = channelData.subscribers[i];
         break;
       }
     }
 
     // show the corresponding button
-    if (subscription_id == null) {
+    if (subscriptionData == null) {
       $("#subscribe").show();
     } else {
       $("#unsubscribe").show();
     }
-
   }
   
   setup();
