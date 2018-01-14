@@ -228,6 +228,10 @@ button#unsubscribe{
   margin-bottom: 10px;
 }
 
+#myTabContent{
+    min-width: 300px;
+}
+
 /* Comment Section */
 .details-comments{
   padding: 10px;
