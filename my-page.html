@@ -101,10 +101,10 @@
         <div class="container user-details2">
           <div class="row">
             <div class="col-md-1">
-              <img class="img-fluid" src="http://img.lum.dolimg.com/v1/images/mshs_iconarcade_rocketlocked_icn_f1b31cff.png" alt="">
+              <img class="img-fluid" id="user_avatar_url" src="http://img.lum.dolimg.com/v1/images/mshs_iconarcade_rocketlocked_icn_f1b31cff.png" alt="">
             </div>
             <div class="col-md-3">
-              <h5>Marvel Entertainment</h5>
+              <h5 id="user_name">Marvel Entertainment</h5>
               <p class="subscriber"><span id="nr-subscribers">4993</span> Subscribers</p>
             </div>
             <div class="col-md-8">
@@ -135,60 +135,14 @@
           <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="videos" role="tabpanel" aria-labelledby="home-tab">
               <!--Start of the first row-->
-              <div class="row">
+              <div class="row" id="videos_list">
                 <!--Mock image (6 img o each row)-->
-                <div class="col-md-2">
-                  <div class="small-video-wrapper">
-                    <img class="img-fluid" src="http://www.gstatic.com/tv/thumb/movieposters/170620/p170620_p_v8_al.jpg" alt="">
-                    <h6 id="video-title">Marver's Runaway</h6>
-                    <p class="d-inline"><span id="nr-views">42k</span> views </p>
-                    <p class="d-inline"><span>4</span> days ago</p>
-                  </div>
-                </div>
+
                 <!--End Mock image-->
 
-                <!--Mock image (6 img o each row)-->
-                <div class="col-md-2">
-                  <div class="small-video-wrapper">
-                    <img class="img-fluid" src="http://girlgamergalaxy.com/wp-content/uploads/2016/11/marvel.jpg" alt="">
-                    <h6 id="video-title">Marver's Runaway</h6>
-                    <p class="d-inline"><span id="nr-views">42k</span> views </p>
-                    <p class="d-inline"><span>4</span> days ago</p>
-                  </div>
-                </div>
-                <!--End Mock image-->
-
-                <!--Mock image (6 img o each row)-->
-                <div class="col-md-2">
-                  <div class="small-video-wrapper">
-                    <img class="img-fluid" src="http://www.gstatic.com/tv/thumb/movieposters/170620/p170620_p_v8_al.jpg" alt="">
-                    <h6 id="video-title">Marver's Runaway</h6>
-                    <p class="d-inline"><span id="nr-views">42k</span> views </p>
-                    <p class="d-inline"><span>4</span> days ago</p>
-                  </div>
-                </div>
-                <!--End Mock image-->
 
               </div>
               <!--End of the first row-->
-
-              <!--Start of the secon row-->
-              <div class="row">
-
-                <!--Mock image (6 img o each row)-->
-                <div class="col-md-2">
-                  <div class="small-video-wrapper">
-                    <img class="img-fluid" src="http://www.gstatic.com/tv/thumb/movieposters/170620/p170620_p_v8_al.jpg" alt="">
-                    <h6 id="video-title">Marver's Runaway</h6>
-                    <p class="d-inline"><span id="nr-views">42k</span> views </p>
-                    <p class="d-inline"><span>4</span> days ago</p>
-                  </div>
-                </div>
-                <!--End Mock image-->
-
-              </div>
-
-              <!--End of the second row-->
 
             </div>
             <!--Start of the about section-->
@@ -202,14 +156,14 @@
                     <div class="desc-wrapper">
                       <dl class="row">
                         <dt class="col-sm-3 h6">Description</dt>
-                        <dd class="col-sm-9">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</dd>
+                        <dd class="col-sm-9" id="user_description_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</dd>
 
                         <dt class="col-sm-3 h6">Details</dt>
-                        <dd class="col-sm-9">Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
+                        <dd class="col-sm-9" id="user_details_text">Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
                         <dd class="col-sm-9 offset-sm-3">Donec id elit non mi porta gravida at eget metus.</dd>
 
                         <dt class="col-sm-3 h6">Links</dt>
-                        <dd class="col-sm-9">A description list is perfect for defining terms.</dd>
+                        <dd class="col-sm-9" id="user_details_links">A description list is perfect for defining terms.</dd>
 
                       </dl>
                     </div>
@@ -223,8 +177,8 @@
                     <div class="status-wrapper">
                       <ul class="list-group ">
                         <li class="list-group-item">Status</li>
-                        <li class="list-group-item">Joined 13 Nov 2016</li>
-                        <li class="list-group-item"><span id="nr-views">123,123</span> views</li>
+                        <li class="list-group-item" id="user_created_date">Joined 13 Nov 2016</li>
+                        <li class="list-group-item"><span id="user_lastUpdate_date">Last update on 13 Nov 2016</span></li>
                       </ul>
                     </div>
 
