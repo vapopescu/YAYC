@@ -46,21 +46,6 @@ $(document).ready(function() {
 
   }
 
-  // function to insert comments
-  $('#comment').on('click', () => {
-    var comment = $('#comment-area').val();
-    $('ul.comments').prepend(`<li>
-        <a href="#" class="avatar"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/38273/yt-avatar-03.png" width="50" alt="UserName" /></a>
-        <a href="#" class="user">Will Morell</a>
-        <span class="time">2 months ago</span>
-        <p>`+comment+ `</p>
-        <span><i class="fa fa-thumbs-up mr-2"></i></span>
-        <span><i class="fa fa-thumbs-down mr-2"></i></span>
-        <span><i class="fa fa-reply mr-2"></i></span>
-      </li>`
-    );
-  });
-
   // function to like/dislike
   $('#like, #dislike').on('click', function() {
     var body = {
@@ -161,6 +146,28 @@ $(document).ready(function() {
     $('#unsubscribe').hide();
   });
 
+  // function to post a comment
+  $("form#user-comment").submit(function(e) {
+    e.preventDefault();
+
+    var body = {
+      video_id: videoData.id,
+      content: $(this).find("textarea#comment-input").val()
+    };
+
+    // post the comment
+    var returnObject = apiRequest("POST", body, "comment", userData.token);
+    //console.log(returnObject);
+
+    // error handling
+    if (returnObject.statusCode != 200) {
+      return;
+    }
+
+    buildComment(returnObject.response).show().prependTo("ul.comments");
+    $(this).find("textarea#comment-input").val("");
+  });
+
   // function to show more comments
   $('#comments-more').on('click', function(e) {
     e.preventDefault();
@@ -171,13 +178,13 @@ $(document).ready(function() {
         return;
       }
 
-      getComment(nextCommentIdx--).show().appendTo("ul.comments");
+      var commentData = videoData.comments[nextCommentIdx--];
+      buildComment(commentData).show().appendTo("ul.comments");
     }
   });
 
   // function to construct a comment
-  var getComment = function(index) {
-    var commentData = videoData.comments[index];
+  var buildComment = function(commentData) {
     var commentObject = $("#comment-template").clone();
 
     // get poster data

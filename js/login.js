@@ -1,5 +1,5 @@
 $(document).ready( () => {
-  $("form#register_form").submit( (e) => {
+  $("form#register_form").submit(function(e) {
     e.preventDefault();
 
     var requestType = $(document.activeElement).val();
@@ -10,11 +10,12 @@ $(document).ready( () => {
       id: null
     };
     
-    console.log(userData);
+    //console.log(userData);
 
     var returnObject = apiRequest("POST", userData, requestType, null);
     
-    if (returnObject.statusCode == 400) {
+    // error handling
+    if (returnObject.statusCode != 200) {
       if (requestType == "user") {
         alert("Username already taken");
       } else if (requestType == "token") {
@@ -23,16 +24,17 @@ $(document).ready( () => {
       return;
     }
     
-    
-    
+    // if last command was register, also login
     if (requestType == "user") {
       returnObject = apiRequest("POST", userData, "token", null);
     }
 
+    // save user data
     userData.token = returnObject.response.token;
     userData.id = returnObject.response.user_id;
     saveUserData(userData);
     
+    // redirect after login
     window.location = "recommended.html";
   });
 });
