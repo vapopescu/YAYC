@@ -43,24 +43,113 @@ $(document).ready(() => {
 
   // --------------------- AJAX REQUESTS/POSTS ---------------------
 
+  var apiRequest_explicit = function(requestType, requestBody, requestPath, token) {
+    var urlBase = 'http://vps500832.ovh.net/api/v1/';
+
+    var returnObject = {
+      statusCode: null,
+      response: null
+    };
+
+    $.ajax({
+      async: false,
+      cache: false,
+      processData: false, //ca sa nu iti proceseze data ! o lasa in formatul FormData
+      contentType: false,
+      enctype : 'multipart/form-data',
+      type: requestType,
+      data: requestBody,
+      dataType: 'application/json',
+      headers: {
+        'Auth-Token': token
+      },
+      error: function (xHR, status, error) {
+        returnObject.statusCode = xHR.status;
+        returnObject.response = JSON.parse(xHR.responseText);
+      },
+      success: function(result, status, xHR) {
+        returnObject.statusCode = status;
+        returnObject.response = result;
+      },
+      url: urlBase + requestPath,
+    });
+
+    /* automatically renew the token */
+    if(returnObject.statusCode == 401) {
+      var userData = loadUserData();
+      var response = apiRequest("POST", userData, 'token', null);
+
+      if(response.statusCode != 200) {
+        console.log(response);
+
+        return;
+      }
+
+      userData.token = response.response.token;
+      saveUserData(userData);
+
+      return apiRequest(requestType, requestBody, requestPath, userData.token);
+    }
+
+    return returnObject;
+  };
 
   //------------------- FUNCTIONS FOR AJAX --------------------------
 
     function retrieve_user_info(userData) {
-      data = apiRequest("GET", null, "user/" + userData.id + "?load=videos,subscribers", userData.token);
-      if (data != null) {
+      data_global = apiRequest("GET", null, "user/" + userData.id + "?load=videos,subscribers", userData.token);
+      if (data_global != null) {
         console.log("User info retrieved succesfully!");
-        construct_card_videos(data.response.videos);
-        insert_html_info(data.response);
+        construct_card_videos(data_global.response.videos);
+        insert_html_info(data_global.response);
       } else {
         console.log("Error in retrieving subscribers list");
       }
+    }
+
+    function update_user_info(userData) {
+      var formdata = new FormData(document.getElementById("modify_account_form"));
+      formdata.append('name', userData.name);
+      formdata.append('password', userData.password);
+      formdata.append('token', userData.token);
+      if (!$("#cover_url").val()) { //checking if file exists
+        //formdata.set('cover', data_global.response.cover_url);
+        console.log("no files! keeping the existing one");
+      }
+      if (!$("#avatar_url").val()) { //checking if file exists
+        //formdata.set('cover', data_global.response.avatar_url);
+        console.log("no files! keeping the existing one");
+      }
+      if (!$("#user_description_edit").val()) {
+        formdata.set('description', "No description");
+
+      }
+      if (!$("#user_details_edit").val()) {
+        formdata.set('details', "No details");
+        console.log('a');
+      }
+      if (!$("#user_links_edit").val()) {
+        formdata.set('links', "No links");
+      }
+
+      formdata.set('_method', 'PUT');//aici ii specifici metoda
+
+      //console.log(formdata);
+      data = apiRequest_explicit("POST", formdata, "user/" + userData.id, userData.token);
+      if (data.statusCode == 200) {
+        alert("Updated succesfully.");
+        //window.location.replace("my-page.html");
+      } else {
+        alert("Error in updating your profile. Please try again.");
+      }
+      //e de tip POST pentru ca el nu poate sa proceseze formdata si deci PUT da eroare
     }
 
   //------------------- FUNCTIONS FOR HTML --------------------------
 
     var carduri = [];
     var userPageID = "";
+    var data_global = "";
     //only thing to be executed at the begining
     setup();
     //temp(); //only for testing purposes
@@ -71,7 +160,7 @@ $(document).ready(() => {
       userPageID = getUrlParameter("id");
       console.log(userPageID);
       if (userData != null) {
-        console.log("setup() user-page.js: Name:" + userData.name + " Token:" + userData.token);
+        console.log("setup() user-page.js: Name:" + userData.name + " Token:" + userData.token + " id:" + userData.id);
         //retrieve_cards();//to be deleted
         retrieve_user_info(userData);
       } else {
@@ -106,6 +195,9 @@ $(document).ready(() => {
       $("#user_details_links").text(data.links);
       $("#user_created_date").text("Joined: " + data.created_at);
       $("#user_lastUpdate_date").text("Last update: " + data.updated_at);
+      $("#user_description_edit").text(data.description);
+      $("#user_details_edit").text(data.details);
+      $("#user_links_edit").text(data.links);
     }
 
 
@@ -121,6 +213,14 @@ $(document).ready(() => {
       }
     }
 
+    $('#save_account_info_button').on('click', function(e) {
+      e.preventDefault();
+      update_user_info(userData);
+
+    });
+
+
+/* NOTE: measure the length of the video
   $('#upload_video_button').on('click', function(e) {
 
     console.log(video);
@@ -146,7 +246,7 @@ document.getElementById('video_video').addEventListener('change', function(e){
     obUrl = URL.createObjectURL(file);
     document.getElementById('video_temp').setAttribute('src', obUrl);
   }
-});
+});*/
 
 
 });

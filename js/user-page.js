@@ -91,7 +91,7 @@ $(document).ready(() => {
 //retrieve data for subscribers from server only if user is loged in
   function setup() {
     userData = loadUserData();
-    userPageID = getUrlParameter("id");
+    userPageID = getUrlId();
     if (userData != null && userPageID != null) {
       console.log("setup() user-page.js: Name:" + userData.name + " Token:" + userData.token);
       retrieve_user_info(userData);

@@ -89,6 +89,7 @@ var getUrlId = function () {
 
   if (result === undefined) {
     alert("Non-existent ID in the URL.");
+    window.location.replace("recommended.html");
   }
 
   return result;

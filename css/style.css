@@ -291,6 +291,18 @@ ul.comments{
     height: 200px;
 }
 
+#user_avatar_box {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  margin-left: 5px;
+}
+
+#user_avatar_url {
+  min-width: 60px;
+  min-height: 60px;
+  object-fit: fill;
+}
 
 .user-details2{
   padding: 20px;
