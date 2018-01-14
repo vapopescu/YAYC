@@ -1,6 +1,4 @@
 /*General*/
-
-
 body{
   background-color: #f2efef;
   font: 0.8125em/1.3077em Roboto, arial, sans-serif;
@@ -30,16 +28,12 @@ ul.sentiment{
   text-align: right;
 }
 
-
-
 .channel-name {
   color: #333;
   font-weight: 500;
   vertical-align: top;
   margin-left: 20px;
 }
-
-
 
 .wrapperdescription{
   padding: 10px;
@@ -48,8 +42,6 @@ ul.sentiment{
   box-shadow: 0 2px 10px rgba(0,0,0,0.3);
   background-color: #fff;
 }
-
-
 
 .wrapperdescription h4{
   margin-top: 10px;
@@ -63,18 +55,30 @@ ul.sentiment{
   cursor: pointer;
 }
 
-.subscribe-btn{
-
+button#subscribe{
   background-color: red;
+  color: white;
   padding: 0.25em 0.6154em;
   border: 1px solid #ccc;
-  border-left: none;
   border-radius: 0 2px 2px 0;
-  color: white;
   width: 80px;
   margin-left: 20px;
   margin-bottom: 20px;
+  display: none;
 }
+
+button#unsubscribe{
+  background-color: lightgray;
+  color: black;
+  padding: 0.25em 0.6154em;
+  border: 1px solid #888;
+  border-radius: 0 2px 2px 0;
+  width: 80px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  display: none;
+}
+
 @media screen and (max-width: 699px) {
     .views label {
         font-size: 12px;
@@ -92,6 +96,7 @@ ul.sentiment{
   text-align: right;
   margin-right: 5px;
 }
+
 .likes i{
   font-size: 20px;
   opacity: 0.7;
@@ -101,10 +106,10 @@ ul.sentiment{
   cursor: pointer;
   opacity: 0.9;
 }
+
 .likes span{
   padding: 5px;
 }
-
 
 .more {
   display: block;
@@ -124,18 +129,18 @@ ul.sentiment{
   box-shadow: 0 2px 10px rgba(0,0,0,0.3);
   background-color: #fff;
 }
+
 .sentiment span:hover{
   cursor: pointer;
   opacity: 0.8;
 }
+
 .details-description #published{
   font:15px;
   font-weight: 500;
 }
 
-/*side video*/
-
-
+/* Side Video */
 .sidevideo img{
   width: 170px;
   height: 128px;
@@ -143,7 +148,6 @@ ul.sentiment{
   background-position: center;
   background-size: cover;
 }
-
 
 .side {
   padding: 10px;
@@ -161,7 +165,10 @@ ul.sentiment{
 .side a:hover {
   text-decoration: none;
 }
-.side a:hover h5 { color: #167ac6; }
+
+.side a:hover h5 {
+  color: #167ac6;
+}
 
 .side a{
     margin-left: 10px;
@@ -188,9 +195,7 @@ ul.sentiment{
   margin-bottom: 10px;
 }
 
-
-/*Comment section*/
-
+/* Comment Section */
 .details-comments{
   padding: 10px;
   margin-top: 10px;
@@ -198,23 +203,26 @@ ul.sentiment{
   box-shadow: 0 2px 10px rgba(0,0,0,0.3);
   background-color: #fff;
 }
+
 .user-comment{
   margin-bottom: 30px;
 }
+
 .formcomment{
   padding: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
 .user-comment textarea{
   height: 60px;
 }
+
 .btn{
   border-radius: 0px !important;
 }
 
-/*Others comments*/
-
+/* Others Comments */
 ul.comments{
   list-style-type: none;
 }
@@ -247,13 +255,17 @@ ul.comments{
   margin-bottom: 2em;
 
 }
-.comments .avatar { float: left; }
+
+.comments .avatar {
+  float: left;
+}
 
 .comments p {
   margin-bottom: 0.3846em;
   overflow: hidden;
   margin-left: 60px;
 }
+
 .comments .user {
   margin-left: 10px;
   font-weight: 500;
@@ -262,6 +274,7 @@ ul.comments{
 .comments a{
   text-decoration: none;
 }
+
 .comments .time{
   font-size: 10px;
   margin-left: 10px;
@@ -273,6 +286,7 @@ ul.comments{
   background-size: contain;
   height: 250px;
 }
+
 .user-details2{
   padding: 20px;
   margin-top: 10px;
@@ -281,9 +295,11 @@ ul.comments{
   background-color: #fff;
   width: 100%;
 }
+
 .user-details2 .btn-subscribe{
   margin-top: 10px;
 }
+
 .nav-wrapper2{
   padding: 20px;
   margin-top: 10px;
@@ -298,19 +314,20 @@ ul.comments{
   font-size: 14px;
 }
 
-
 @media (min-width: 576px) and (max-width: 767px) {
   .user-details2 img{
     height: 60px;
     width: 50px;
   }
 }
+
 @media (max-width: 575px) {
   .user-details2 img{
     height: 60px;
     width: 50px;
   }
 }
+
 @media (min-width: 768px) and (max-width: 991px) {
   .user-details2 img{
     height: 60px;
@@ -336,12 +353,11 @@ ul.comments{
 
 .small-video-wrapper img:hover{
   cursor: pointer;
-
 }
+
 .small-video-wrapper h6:hover{
   cursor: pointer;
 }
-
 
 .small-video-wrapper p{
   color: #333;
@@ -351,6 +367,7 @@ ul.comments{
   margin: 10px;
   margin-top: 30px;
 }
+
 .desc-wrapper{
   margin-top: 30px;
 }
@@ -358,6 +375,7 @@ ul.comments{
 .status-wrapper li{
   font-size: 14px;
 }
+
 .desc-wrapper dd{
   font-size: 14px;
 }

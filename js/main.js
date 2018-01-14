@@ -71,7 +71,7 @@ var deleteUserData = function () {
   console.log("User details: " + localStorage.getItem("userData"));
 };
 
-var getUrlParameter = function getUrlParameter(param) {
+var getUrlParameter = function (param) {
   var pageURL = decodeURIComponent(window.location.search.substring(1));
   var urlVariables = pageURL.split('&');
 
@@ -82,4 +82,14 @@ var getUrlParameter = function getUrlParameter(param) {
       return parameterName[1];
     }
   }
+};
+
+var getUrlId = function () {
+  var result = getUrlParameter("id");
+
+  if (result === undefined) {
+    alert("Non-existent ID in the URL.");
+  }
+
+  return result;
 };
