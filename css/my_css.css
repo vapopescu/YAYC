@@ -312,6 +312,11 @@ label.filter_mobile_collapse_button {
   cursor: pointer;
 }
 
+.load_more_recipes_button > span {
+  position: relative;
+  top: 10px;
+}
+
 .card_content_background {
   position: fixed;
   width: 100vw;/*width of the screen*/
@@ -419,8 +424,6 @@ label.filter_mobile_collapse_button {
 }
 
 .ellipsis:after {
-	content: "\02026";
-
 	box-sizing: content-box;
 	-webkit-box-sizing: content-box;
 	-moz-box-sizing: content-box;
@@ -468,8 +471,6 @@ background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAABCAMA
 }
 
 .ellipsis_summary:after {
-	content: "\02026";
-
 	box-sizing: content-box;
 	-webkit-box-sizing: content-box;
 	-moz-box-sizing: content-box;

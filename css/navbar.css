@@ -34,7 +34,7 @@ body, html {
   font-size: 400%;
   clear: left;
   left: 5%;
-  padding-bottom: 10px;
+  padding: 10px;
   font-family: 'Raleway', serif;
   z-index: 2;
   top: 15px;
@@ -159,6 +159,9 @@ input[type='search'].search_recipe_mobile {
 }
 
 /*SIDE BAR*/
+.side-nav a.subheader{
+  color: rgba(0, 0, 0, 0.54);
+}
 
 a.waves-effect.activee  { /*!!!!element with clase multiple */
   background-color: #ffcc00;
