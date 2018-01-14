@@ -173,6 +173,13 @@ $(document).ready(() => {
   }
   //------------------- FUNCTIONS FOR HTML --------------------------
 
+  //retrieve data for videos from server only if user is loged in
+  function setup() {
+    userData = loadUserData();
+
+    retrieve_videos(userData);
+  }
+
   //initialise the page, load some cards
   function init() {
 
