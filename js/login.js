@@ -35,6 +35,6 @@ $(document).ready( () => {
     saveUserData(userData);
     
     // redirect after login
-    window.location = "recommended.html";
+    window.location = "index.html";
   });
 });

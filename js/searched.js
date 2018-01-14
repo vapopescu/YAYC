@@ -184,7 +184,7 @@ $(document).ready(() => {
       retrieve_videos(userData, search_for);
     } else {
       alert("Non-existent query in the URL or user not logged in.");
-      window.location.replace("recommended.html");
+      window.location.replace("index.html");
     }
   }
 

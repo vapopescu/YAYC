@@ -41,59 +41,6 @@ $(document).ready(() => {
 
   }
 
-  // --------------------- AJAX REQUESTS/POSTS ---------------------
-
-  var apiRequest_explicit = function(requestType, requestBody, requestPath, token) {
-    var urlBase = 'http://vps500832.ovh.net/api/v1/';
-
-    var returnObject = {
-      statusCode: null,
-      response: null
-    };
-
-    $.ajax({
-      async: false,
-      cache: false,
-      processData: false, //ca sa nu iti proceseze data ! o lasa in formatul FormData
-      contentType: false,
-      enctype : 'multipart/form-data',
-      type: requestType,
-      data: requestBody,
-      dataType: 'application/json',
-      headers: {
-        'Auth-Token': token
-      },
-      error: function (xHR, status, error) {
-        returnObject.statusCode = xHR.status;
-        returnObject.response = JSON.parse(xHR.responseText);
-      },
-      success: function(result, status, xHR) {
-        returnObject.statusCode = status;
-        returnObject.response = result;
-      },
-      url: urlBase + requestPath,
-    });
-
-    /* automatically renew the token */
-    if(returnObject.statusCode == 401) {
-      var userData = loadUserData();
-      var response = apiRequest("POST", userData, 'token', null);
-
-      if(response.statusCode != 200) {
-        console.log(response);
-
-        return;
-      }
-
-      userData.token = response.response.token;
-      saveUserData(userData);
-
-      return apiRequest(requestType, requestBody, requestPath, userData.token);
-    }
-
-    return returnObject;
-  };
-
   //------------------- FUNCTIONS FOR AJAX --------------------------
 
     function retrieve_user_info(userData) {
@@ -135,7 +82,7 @@ $(document).ready(() => {
       formdata.set('_method', 'PUT');//aici ii specifici metoda
 
       //console.log(formdata);
-      data = apiRequest_explicit("POST", formdata, "user/" + userData.id, userData.token);
+      data = apiFormRequest("POST", formdata, "user/" + userData.id, userData.token);
       if (data.statusCode == 200) {
         alert("Updated succesfully.");
         window.location.replace("my-page.html");
