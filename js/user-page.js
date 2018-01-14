@@ -118,6 +118,7 @@ $(document).ready(() => {
   //insert in html the necessary data of the user
     function insert_html_info(data) {
       $("#user_avatar_url").attr("src", data.avatar_url);
+      $("#user_cover_url").attr("src", data.cover_url);
       $("#user_name").text(data.name);
       $("#nr-subscribers").text(data.subscribers.length);
       $("#user_description_text").text(data.description);

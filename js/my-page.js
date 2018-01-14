@@ -43,70 +43,8 @@ $(document).ready(() => {
 
   // --------------------- AJAX REQUESTS/POSTS ---------------------
 
-    function apiRequest (requestType, requestBody, requestPath, token) {
-      var urlBase = 'http://vps500832.ovh.net/api/v1/';
-
-      var returnObject = {
-        statusCode: null,
-        response: null
-      };
-
-      $.ajax({
-      async: false,
-      cache: false,
-      type: requestType,
-      data: requestBody,
-      dataType: 'application/json',
-      headers: {
-        'Auth-Token': token
-      },
-      error: function (xHR, status, error) {
-        returnObject.statusCode = xHR.status;
-        returnObject.response = JSON.parse(xHR.responseText);
-      },
-      success: function(result, status, xHR) {
-        returnObject.statusCode = status;
-        returnObject.response = result;
-
-      },
-      url: urlBase + requestPath,
-    });
-
-    /* automatically renew the token */
-    if(returnObject.statusCode == 401) {
-      var userData = loadUserData();
-      var response = apiRequest("POST", userData, 'token', null);
-      console.log("Error in ajax, user not logged in: " + requestPath);
-    }	else if(returnObject.statusCode != 200) {
-        console.log("Error in ajax: " + requestPath + " " + returnObject.statusCode + " " + returnObject.response);
-        return;
-    } else {
-      console.log("Succes in ajax: " + requestPath);
-    }
-
-     return returnObject;
-    };
 
   //------------------- FUNCTIONS FOR AJAX --------------------------
-
-  var getUrlParameter = function getUrlParameter(sParam) {
-      var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-          sURLVariables = sPageURL.split('&'),
-          sParameterName,
-          i;
-
-      for (i = 0; i < sURLVariables.length; i++) {
-          sParameterName = sURLVariables[i].split('=');
-
-          if (sParameterName[0] === sParam) {
-              return sParameterName[1];
-          }
-      }
-  };
-
-  function loadUserData () {
-    return JSON.parse(localStorage.getItem("userData"));
-    };
 
     function retrieve_user_info(userData) {
       data = apiRequest("GET", null, "user/" + userData.id + "?load=videos,subscribers", userData.token);
@@ -117,13 +55,6 @@ $(document).ready(() => {
       } else {
         console.log("Error in retrieving subscribers list");
       }
-    }
-
-    /* delete the user data from the local storage */
-    function deleteUserData() {
-      localStorage.removeItem("userData");
-      console.log("Signed out:");
-      console.log("User details: " + localStorage.getItem("userData"));
     }
 
   //------------------- FUNCTIONS FOR HTML --------------------------
@@ -167,6 +98,7 @@ $(document).ready(() => {
   //insert in html the necessary data of the user
     function insert_html_info(data) {
       $("#user_avatar_url").attr("src", data.avatar_url);
+      $("#user_cover_url").attr("src", data.cover_url);
       $("#user_name").text(data.name);
       $("#nr-subscribers").text(data.subscribers.length);
       $("#user_description_text").text(data.description);
