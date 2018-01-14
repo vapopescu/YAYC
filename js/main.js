@@ -94,3 +94,14 @@ var getUrlId = function () {
 
   return result;
 };
+
+var getUrlQuery = function () {
+  var result = getUrlParameter("query");
+
+  if (result === undefined) {
+    alert("Non-existent query in the URL.");
+    window.location.replace("recommended.html");
+  }
+
+  return result;
+};

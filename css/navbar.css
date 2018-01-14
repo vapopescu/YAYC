@@ -90,7 +90,20 @@ input[type='search'].search_recipe_desktop {
   color: white;
 }
 
-#search_video_icon {
+#search_video_icon_d {
+  position: absolute;
+  cursor: pointer;
+  right: 0px;
+  padding-left: 5%;
+  padding-right: 5%;
+  background-color: red;
+  border-left: 2px;
+  height: 50px;
+  border-color:  black;
+  border-left-style: solid;
+}
+
+#search_video_icon_m {
   position: absolute;
   cursor: pointer;
   right: 0px;
