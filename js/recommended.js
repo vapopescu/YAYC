@@ -1,7 +1,7 @@
 $(document).ready(() => {
 
-   $('select').material_select();//ALTFEL NU ITI AFISEAZA SELECT-UL/SORT
-//stuff necessary for slide menu to work
+  $('select').material_select();//ALTFEL NU ITI AFISEAZA SELECT-UL/SORT
+  //stuff necessary for slide menu to work
   $('.button-collapse').sideNav({
     menuWidth: 300, // Default is 300
     edge: 'left', // Choose the horizontal origin
@@ -10,7 +10,7 @@ $(document).ready(() => {
     onOpen: function(el) {
       console.log("DA");
       //$(".justify-text").hide();
-      }, // A function to be called when sideNav is opened
+    }, // A function to be called when sideNav is opened
     onClose: function(el) {
       //$(".justify-text").show();
       console.log("NU");
@@ -39,36 +39,36 @@ $(document).ready(() => {
 
     generate_html_text_card() {
       this.text_card =
-      `<div class = "card_box hoverable">
-        <div class="card_image_container">
-          <img class="card_image" src=` + this.card_image + `>
-          <div class="card_time_box"><i class="material-icons card_time_icon">access_time</i>
-            <label class="card_time_text">` + '2' + `</label>
-          </div>
-        </div>
-        <div class="card_title ellipsis">
-          <div>
-            <a href="`+ this.card_video_link + `">` +
-            this.card_title +
-            `</a>
-          </div>
-        </div>
-        <div class="card_box_author">
-          <a href="`+ this.card_author_link + `">` + this.card_author + `</a>
-        </div>
-        <div class="card_box_views">
-          <label>` + this.card_views + `</label>
-        </div>
-        <div class="justify-text card_text ellipsis_summary">
-          <div>
-            <p>`
-            + this.card_text +
-            `</p>
-          </div>
-        </div>
-        <div class="id" id="` + this.card_id  + `"></div>
-      </div>
-    </div>`
+        `<div class = "card_box hoverable">
+<div class="card_image_container">
+<img class="card_image" src=` + this.card_image + `>
+<div class="card_time_box"><i class="material-icons card_time_icon">access_time</i>
+<label class="card_time_text">` + '2' + `</label>
+</div>
+</div>
+<div class="card_title ellipsis">
+<div>
+<a href="`+ this.card_video_link + `">` +
+        this.card_title +
+        `</a>
+</div>
+</div>
+<div class="card_box_author">
+<a href="`+ this.card_author_link + `">` + this.card_author + `</a>
+</div>
+<div class="card_box_views">
+<label>` + this.card_views + `</label>
+</div>
+<div class="justify-text card_text ellipsis_summary">
+<div>
+<p>`
+        + this.card_text +
+        `</p>
+</div>
+</div>
+<div class="id" id="` + this.card_id  + `"></div>
+</div>
+</div>`
     }
 
     get html_text_card() {
@@ -118,7 +118,7 @@ $(document).ready(() => {
 
   // --------------------- AJAX REQUESTS/POSTS ---------------------
 
-//retrieve data from server for all cards
+  //retrieve data from server for all cards
   function retrieve_cards() {
     link = local + 'recipes/';
 
@@ -136,68 +136,10 @@ $(document).ready(() => {
     });
   }
 
-  function apiRequest (requestType, requestBody, requestPath, token) {
-  	var urlBase = 'http://vps500832.ovh.net/api/v1/';
-
-  	var returnObject = {
-  		statusCode: null,
-  		response: null
-  	};
-
-    $.ajax({
-		async: false,
-		cache: false,
-		type: requestType,
-		data: requestBody,
-		dataType: 'application/json',
-		headers: {
-			'Auth-Token': token
-		},
-		error: function (xHR, status, error) {
-			returnObject.statusCode = xHR.status;
-			returnObject.response = JSON.parse(xHR.responseText);
-		},
-		success: function(result, status, xHR) {
-			returnObject.statusCode = status;
-			returnObject.response = result;
-
-		},
-		url: urlBase + requestPath,
-	});
-
-	/* automatically renew the token */
-	if(returnObject.statusCode == 401) {
-		var userData = loadUserData();
-		var response = apiRequest("POST", userData, 'token', null);
-    console.log("Error in ajax, user not logged in: " + requestPath);
-  }	else if(returnObject.statusCode != 200) {
-			console.log("Error in ajax: " + requestPath + " " + returnObject.statusCode + " " + returnObject.response);
-			return;
-	} else {
-    console.log("Succes in ajax: " + requestPath);
-  }
-
-	 return returnObject;
-  };
-
-  /* load the user data from the local storage */
-  function loadUserData () {
-  	return JSON.parse(localStorage.getItem("userData"));
-  };
-
-  /* save the user data into the local storage */
-  function saveUserData (userData) {
-  	localStorage.setItem("userData", JSON.stringify(userData));
-  };
-
-  var requestNewToken = function (userData) {
-  	return apiRequest("POST", userData, 'token', null);
-  };
-
   //------------------- FUNCTIONS FOR AJAX --------------------------
 
 
-//make request for video data
+  //make request for video data
   function retrieve_videos(userData) {
     data = apiRequest("GET", null, 'video/' + "?load=user", userData.token); //retrieve data for videos
     if (data != null) {
@@ -208,7 +150,7 @@ $(document).ready(() => {
     }
   }
 
-//create the card_video objects
+  //create the card_video objects
   function construct_card_videos(data) {
     console.log(data);
     console.log("data length: " + data.length);
@@ -229,33 +171,12 @@ $(document).ready(() => {
     }
     init();
   }
-
-
-
   //------------------- FUNCTIONS FOR HTML --------------------------
 
-
-//retrieve data for videos from server only if user is loged in
-  function setup() {
-    userData = loadUserData();
-    if (userData != null) {
-      console.log("setup(): Name:" + userData.name + " Token:" + userData.token);
-      //retrieve_cards();//to be deleted
-      retrieve_videos(userData);
-    } else {
-      console.log("setup(): Error, user is not logged in! No videos to retrieve");
-    }
-  }
-
-//initialise the page, load some cards
+  //initialise the page, load some cards
   function init() {
 
     var userData = loadUserData();
-
-    //if user is not logged in
-    if (userData == null) {
-      //window.location.replace("http://vps500832.ovh.net/yayc/login.html");
-    } //else {
 
     checkDevice();
 
@@ -297,11 +218,11 @@ $(document).ready(() => {
     number_cards_displayed = i;
 
     console.log("cards_on_load:" + CARDS_ON_LOAD);
-  //  }
+    //  }
 
   }
 
-//copied from: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+  //copied from: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
   function shuffle_cards() {
 
     console.log("Shuffle cards");
@@ -321,7 +242,7 @@ $(document).ready(() => {
     }
   }
 
-//sorting cards
+  //sorting cards
   function sort_cards(text) {
     console.log("Sorting cards on: " + text);
     if (text == "most_liked") {
@@ -348,15 +269,15 @@ $(document).ready(() => {
     }
   }
 
-//animations for mouseenter
+  //animations for mouseenter
   $("body").on("mouseenter", ".card_box_author a, .filter_box label", function() {
     //alert("A1");
     $(this).css({
-        "color": "#ffcc00"
+      "color": "#ffcc00"
     });
   })
 
-//animations for mouseleave
+  //animations for mouseleave
   $("body").on("mouseleave", ".card_box_author a, .filter_box label", function() {
     $(this).css({
       "color": "#9e9e9e"
@@ -364,21 +285,21 @@ $(document).ready(() => {
   })
 
   //animations for mouseenter
-    $("body").on("mouseenter", ".card_title a", function() {
-      //alert("A1");
-      $(this).css({
-          "text-decoration": "underline"
-      });
-    })
+  $("body").on("mouseenter", ".card_title a", function() {
+    //alert("A1");
+    $(this).css({
+      "text-decoration": "underline"
+    });
+  })
 
   //animations for mouseleave
-    $("body").on("mouseleave", ".card_title a", function() {
-      $(this).css({
-        "text-decoration": "none"
-      });
-    })
+  $("body").on("mouseleave", ".card_title a", function() {
+    $(this).css({
+      "text-decoration": "none"
+    });
+  })
 
-//sorting the cards
+  //sorting the cards
   $("#sort_dropdown").change(function() {
     var selected = $(this).val();
     if (selected == 'most_liked') {
@@ -405,29 +326,29 @@ $(document).ready(() => {
     }
   })
 
-//switch to list view
+  //switch to list view
   $(".view_list_button").on("click", event => {
     if ($(".view_list_button").hasClass('pressed'));
-      else {
-        $(".view_list_button").toggleClass('pressed');
-        $(".view_module_button").toggleClass('pressed');
-        reloadCards();
-        window.dispatchEvent(new Event('resize'));//to adjust card height
-      }
+    else {
+      $(".view_list_button").toggleClass('pressed');
+      $(".view_module_button").toggleClass('pressed');
+      reloadCards();
+      window.dispatchEvent(new Event('resize'));//to adjust card height
+    }
   });
 
-//switch to module view
+  //switch to module view
   $(".view_module_button").on("click", event => {
     if ($(".view_module_button").hasClass('pressed'));
-      else {
-        $(".view_module_button").toggleClass('pressed');
-        $(".view_list_button").toggleClass('pressed');
-        reloadCards();
-        window.dispatchEvent(new Event('resize'));//to adjust card height
-      }
+    else {
+      $(".view_module_button").toggleClass('pressed');
+      $(".view_list_button").toggleClass('pressed');
+      reloadCards();
+      window.dispatchEvent(new Event('resize'));//to adjust card height
+    }
   });
 
-//reload cards into the new view mode/into the new filter requirements
+  //reload cards into the new view mode/into the new filter requirements
   function reloadCards() {
     clearCardsHtml();//clear all current cards
 
@@ -442,28 +363,28 @@ $(document).ready(() => {
       }
       last_index_of_card_used = temp_count - 1;
     } else {//filter loaded, add what it respects the filter
-        //we also start from 0 with showing cards (do not care about the old view)
-        let temp_count = 0;
-        for (i = 0; i < carduri.length; i++) {
-          console.log("checking card: " + i);
-          if (meetsFilter(i)) {
-            appendCardsHtml(i);
-            temp_count++;
-            last_index_of_card_used = i;
-            if (temp_count == CARDS_ON_LOAD) {//at first load only the first CARDS_ON_LOAD cards
-              console.log("Enough cards! ReloadCards");
-              break;
-            }
+      //we also start from 0 with showing cards (do not care about the old view)
+      let temp_count = 0;
+      for (i = 0; i < carduri.length; i++) {
+        console.log("checking card: " + i);
+        if (meetsFilter(i)) {
+          appendCardsHtml(i);
+          temp_count++;
+          last_index_of_card_used = i;
+          if (temp_count == CARDS_ON_LOAD) {//at first load only the first CARDS_ON_LOAD cards
+            console.log("Enough cards! ReloadCards");
+            break;
           }
         }
-        $(".load_more_recipes_button").show(); //to reset the load button
       }
-      console.log("Last index used in reloadCards " + last_index_of_card_used);
-      window.dispatchEvent(new Event('resize'));//to adjust card height on the new cards !
+      $(".load_more_recipes_button").show(); //to reset the load button
+    }
+    console.log("Last index used in reloadCards " + last_index_of_card_used);
+    window.dispatchEvent(new Event('resize'));//to adjust card height on the new cards !
 
   }
 
-// check if the card at index position respects the requirements
+  // check if the card at index position respects the requirements
   function meetsFilter(index) {
     return true;//no more filters
     if (filter_applied_on_meal_type) {
@@ -503,17 +424,17 @@ $(document).ready(() => {
     $(".actual_list_videos").append(//AICI ERA PROBLEMA, TREBUIE APPEND IN LOC DE BEFORE
       //ALTFEL APAR PROBLEME DE SINCRONIZARE
       `<div class="col ` + view_recipes + " card_ " + `">` + carduri[index].html_text_card);
-      console.log("Append card with index: " + index);
+    console.log("Append card with index: " + index);
   }
 
-//return the array index based on id
+  //return the array index based on id
   function id_return_index(id) {
     for (i = 0; i < carduri.length; i++)
       if (carduri[i].cardID == id)
         return i;
   }
 
-// check if device used is a desktop or a mobile
+  // check if device used is a desktop or a mobile
   function checkDevice() {
     if ($(".type_display").css('font-size')=="15px") {
       device = "desktop";
@@ -522,9 +443,9 @@ $(document).ready(() => {
       device = "desktop_large";
       CARDS_ON_LOAD = 4; //load only 4 cards at a time
     } else {
-        device = "mobile";
-        CARDS_ON_LOAD = 4;
-      }
+      device = "mobile";
+      CARDS_ON_LOAD = 4;
+    }
   }
 
   //set card height based on whether the view is a list or a module
@@ -533,7 +454,7 @@ $(document).ready(() => {
     console.log("resize.." + view_recipes);
     checkDevice();
     if ($(".view_module_button").hasClass('pressed') && device != 'mobile') {
-          //desktop
+      //desktop
       console.log("resize: adjust to module view on: " + device);
       $(".card_box").css ({
         "height":"400px"
@@ -550,54 +471,52 @@ $(document).ready(() => {
       //alert("d");
     } else {
       //tablets and phones
-        $(".card_box").css ({
-          "height":"auto"
-        });
-        if (view_recipes != "s12") {
-          view_recipes = "s12";
-          $(".view_module_button").removeClass('pressed');
-          $(".view_list_button").addClass('pressed');
-          console.log("resize: adjust to list view on: " + device);
-          reloadCards();
-        }
+      $(".card_box").css ({
+        "height":"auto"
+      });
+      if (view_recipes != "s12") {
+        view_recipes = "s12";
+        $(".view_module_button").removeClass('pressed');
+        $(".view_list_button").addClass('pressed');
+        console.log("resize: adjust to list view on: " + device);
+        reloadCards();
+      }
     }
     //alert($(".view_module_button").hasClass('pressed'));
   })
 
-//loading more recipes
+  //loading more recipes
   $(".load_more_recipes_button").on("click", event => {
-      let i = last_index_of_card_used + 1; //to avoid duplicates
-      let temp_count = 0; //temporary count
-      while (i < carduri.length) {
-        if (meetsFilter(i)) {
-          appendCardsHtml(i);
-          number_cards_displayed++; //progress in displaying cards
-          temp_count ++;
-          console.log(i + " " + carduri[i].cardID);
-          last_index_of_card_used = i;
-        }
-        if (number_cards_displayed % CARDS_ON_LOAD == 0) {
-          console.log("last_index_of_card_used " + last_index_of_card_used);
-          console.log("number_cards_displayed " + number_cards_displayed);
-          break;
-        }
-        i++;
+    let i = last_index_of_card_used + 1; //to avoid duplicates
+    let temp_count = 0; //temporary count
+    while (i < carduri.length) {
+      if (meetsFilter(i)) {
+        appendCardsHtml(i);
+        number_cards_displayed++; //progress in displaying cards
+        temp_count ++;
+        console.log(i + " " + carduri[i].cardID);
+        last_index_of_card_used = i;
       }
+      if (number_cards_displayed % CARDS_ON_LOAD == 0) {
+        console.log("last_index_of_card_used " + last_index_of_card_used);
+        console.log("number_cards_displayed " + number_cards_displayed);
+        break;
+      }
+      i++;
+    }
 
-      if (last_index_of_card_used + 1 == carduri.length || i == carduri.length) {
-        $(".load_more_recipes_button").hide();
-      }
-      window.dispatchEvent(new Event('resize')); //to adjust the height of the new cards !
-      //apparently the new cards have the old css style, so if the view is module, it will create problems!!!
+    if (last_index_of_card_used + 1 == carduri.length || i == carduri.length) {
+      $(".load_more_recipes_button").hide();
+    }
+    window.dispatchEvent(new Event('resize')); //to adjust the height of the new cards !
+    //apparently the new cards have the old css style, so if the view is module, it will create problems!!!
 
   })
 
 
- //close card_content when escape button is pressed
+  //close card_content when escape button is pressed
   $(document).keyup(function(e) {
-     if (e.keyCode == 27) {
+    if (e.keyCode == 27) {
     }
   });
-
-
 });
