@@ -1,3 +1,6 @@
+var userData = null;
+var subscription_id = null;
+
 $(document).ready( () => {
 
   // function to insert comments
@@ -30,21 +33,21 @@ $(document).ready( () => {
     $("#dislikes").text(nr);
   });
   
+  // function to subscribe
+  $('#subscribe').on('click', (e) => {
+
+  });
+
   // function to load content
-  var loadContent = function() {
+  var setup = function() {
     // load user data
-    var userData = loadUserData();
+    userData = loadUserData();
 
     // get the video id from the url
-    var video_id = getUrlParameter("id");
-
-    if (video_id === undefined) {
-      alert("Non-existent video id.");
-      return;
-    }
+    var video_id = getUrlId();
 
     // send a request to get video information
-    var videoDetails = apiRequest("GET", null, "video/" + video_id + "?load=user,votes,comments", userData.token);
+    var videoDetails = apiRequest("GET", null, "video/" + video_id + "?load=votes,comments", userData.token);
     console.log(videoDetails);
 
     // error handling
@@ -56,15 +59,40 @@ $(document).ready( () => {
     // populate the page
     $("#title").text(videoDetails.response.name);
     $("#main-video").attr("src", videoDetails.response.video_url);
-    $("#channel-avatar").attr("src", videoDetails.response.user.avatar_url);
     $("#views").text(videoDetails.response.view_count);
     $("#likes").text(videoDetails.response.likes);
     $("#dislikes").text(videoDetails.response.dislikes);
-    $("#channel-name").text(videoDetails.response.user.name);
     $("#description").text(videoDetails.response.description);
     $("#upload-date").text($.format.date(videoDetails.response.created_at, "MMM dd, yyyy"));
+
+    // send a request to get channel information
+    var channelDetails = apiRequest("GET", null, "user/" + videoDetails.response.user_id + "?load=subscribers", userData.token);
+    console.log(channelDetails);
+
+    // populate the page
+    $("#channel-avatar").attr("src", channelDetails.response.avatar_url);
+    $("#channel-name").text(channelDetails.response.name);
+
+    // get the channel subscribel list
+    var subs = channelDetails.response.subscribers;
+
+    // check if the user is subscribed
+    for (var i = 0; i < subs.length; i++) {
+      if (subs[i].source_user_id == userData.id) {
+        subscription_id = subs[i].id;
+        break;
+      }
+    }
+
+    // show the corresponding button
+    if (subscription_id == null) {
+      $("#subscribe").show();
+    } else {
+      $("#unsubscribe").show();
+    }
+
   }
   
-  loadContent();
+  setup();
   
 });
