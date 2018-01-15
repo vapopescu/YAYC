@@ -105,6 +105,7 @@ $(document).ready(() => {
     //console.log(formdata);
     data = apiFormRequest("POST", formdata, "video/", userData.token);
     if (data.statusCode != 200) {
+      $(this).find("button[type='submit']").text("Try again").removeClass("disabled");
       return;
     }
     //e de tip POST pentru ca el nu poate sa proceseze formdata si deci PUT da eroare
