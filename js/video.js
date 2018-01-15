@@ -273,6 +273,7 @@ $(document).ready(function() {
 
   //insert the cards_video objects on the right side of the html
   function init() {
+    shuffle_cards();
     for (i = 0; i < CARDS_TO_LOAD && i < carduri.length; i++) {
       console.log(i);
       appendCardsHtml(i);
@@ -287,5 +288,25 @@ $(document).ready(function() {
     }
     $("#related").append(carduri[index].html_text_card);
   }
+
+  //copied from: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+    function shuffle_cards() {
+
+      console.log("Shuffle cards");
+      var currentIndex = carduri.length, temporaryValue, randomIndex;
+
+      // While there remain elements to shuffle...
+      while (0 !== currentIndex) {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = carduri[currentIndex];
+        carduri[currentIndex] = carduri[randomIndex];
+        carduri[randomIndex] = temporaryValue;
+      }
+    }
 
 });

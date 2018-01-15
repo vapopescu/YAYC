@@ -54,7 +54,7 @@ $(document).ready(() => {
               <a href="`+ this.card_author_link + `">` + this.card_author + `</a>
             </div>
             <div class="card_box_views">
-              <label>` + this.card_views + `</label>
+              <label>` + this.card_views + ` views</label>
             </div>
             <div class="justify-text card_text ellipsis_summary">
               <div>
