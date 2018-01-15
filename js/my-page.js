@@ -95,6 +95,9 @@ $(document).ready(() => {
   // function to upload a video
   $("#upload_video_form").submit(function(e) {
     e.preventDefault();
+
+    $(this).find("button[type='submit']").text("Uploading...").addClass("disabled");
+
     var formdata = new FormData(document.getElementById("upload_video_form"));
 
     //formdata.set('_method', 'PUT');//aici ii specifici metoda
