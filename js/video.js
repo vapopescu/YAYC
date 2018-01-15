@@ -226,9 +226,11 @@ $(document).ready(function() {
 
     // send a request to get channel information
     responseObject = apiRequest("GET", null, "user/" + videoData.user_id + "?load=subscribers,subscriptions.target.videos", userData.token);
+    videoObject = apiRequest("GET", null, 'video/' + "?load=user", userData.token); //retrieve data for videos
     //console.log(responseObject);
     channelData = responseObject.response;
-    construct_card_videos(channelData.subscriptions);
+    videoData = videoObject.response;
+    construct_card_videos(videoData);
 
     // populate the page
     $("#channel-avatar").attr("src", channelData.avatar_url);
@@ -258,16 +260,15 @@ $(document).ready(function() {
   function construct_card_videos(data) {
     console.log(data);
     console.log("data length: " + data.length);
-    for (i = 0; i < data.length; i++)
-      for (j = 0; j < data[i].target.videos.length; j++){
-        card_video_id = data[i].target.videos[j].id;
-        card_title = data[i].target.videos[j].name;
-        card_author = data[i].target.name;
-        card_views = data[i].target.videos[j].view_count;
-        card_image = data[i].target.videos[j].thumbnail_url;
+    for (i = 0; i < data.length; i++) {
+        card_video_id = data[i].id;
+        card_title = data[i].name;
+        card_author = data[i].user.name;
+        card_views = data[i].view_count;
+        card_image = data[i].thumbnail_url;
         carduri.push(new cards_video(card_video_id, card_title, card_author, card_views, card_image));
         //console.log(carduri[0] + "aaa");
-    }
+      }
   init();
   }
 
