@@ -42,9 +42,6 @@ $(document).ready(() => {
         `<div class = "card_box hoverable">
           <div class="card_image_container">
             <img class="card_image" src=` + this.card_image + `>
-              <div class="card_time_box"><i class="material-icons card_time_icon">access_time</i>
-                <label class="card_time_text">` + '2' + `</label>
-              </div>
             </div>
             <div class="card_title ellipsis">
               <div>

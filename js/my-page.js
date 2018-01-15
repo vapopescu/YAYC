@@ -105,7 +105,14 @@ $(document).ready(() => {
     function setup() {
       userData = loadUserData();
       userPageID = getUrlParameter("id");
-      console.log(userPageID);
+      //console.log(userPageID);
+
+      var activeTab = getUrlParameter("tab");
+      if (activeTab != null) {
+        activeTab += "-tab";
+        $("#user-navbar a#" + activeTab).click();
+      }
+
       if (userData != null) {
         console.log("setup() user-page.js: Name:" + userData.name + " Token:" + userData.token + " id:" + userData.id);
         //retrieve_cards();//to be deleted
