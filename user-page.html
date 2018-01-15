@@ -109,7 +109,8 @@
               <p class="subscriber"><span id="nr-subscribers"></span> Subscribers</p>
             </div>
             <div class="col-md-8">
-              <button class="btn btn-danger float-right btn-subscribe" type="button" name="button">Subscribe</button>
+              <button id="subscribe" class="btn btn-danger float-right btn-subscribe" style="display:none">Subscribe</button>
+              <button id="unsubscribe" class="btn btn-secondary float-right btn-subscribe" style="display:none">Unsubscribe</button>
             </div>
 
           </div>
@@ -149,14 +150,13 @@
                     <div class="desc-wrapper">
                       <dl class="row">
                         <dt class="col-sm-3 h6">Description</dt>
-                        <dd class="col-sm-9" id="user_description_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</dd>
+                        <dd class="col-sm-9" id="user_description_text"></dd>
 
                         <dt class="col-sm-3 h6">Details</dt>
-                        <dd class="col-sm-9" id="user_details_text">Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-                        <dd class="col-sm-9 offset-sm-3">Donec id elit non mi porta gravida at eget metus.</dd>
+                        <dd class="col-sm-9" id="user_details_text"></dd>
 
                         <dt class="col-sm-3 h6">Links</dt>
-                        <dd class="col-sm-9" id="user_details_links">A description list is perfect for defining terms.</dd>
+                        <dd class="col-sm-9" id="user_details_links"></dd>
 
                       </dl>
                     </div>
@@ -170,8 +170,8 @@
                     <div class="status-wrapper">
                       <ul class="list-group ">
                         <li class="list-group-item">Status</li>
-                        <li class="list-group-item" id="user_created_date">Joined 13 Nov 2016</li>
-                        <li class="list-group-item"><span id="user_lastUpdate_date">Last update on 13 Nov 2016</span></li>
+                        <li class="list-group-item" id="user_created_date"></li>
+                        <li class="list-group-item"><span id="user_lastUpdate_date"></span></li>
                       </ul>
                     </div>
 
@@ -197,6 +197,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/navbar.js"></script>
+    <script type="text/javascript" src="js/subscribe.js"></script>
     <script type="text/javascript" src="js/user-page.js"></script>
   </body>
 </html>

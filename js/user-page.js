@@ -22,14 +22,14 @@ $(document).ready(() => {
 
 
       this.text_card =
-      `<div class="col-md-2">
-        <div class="small-video-wrapper">
-          <img class="img-fluid" src="` + this.card_image + `" alt="">
-          <h6 id="video-title"><a href="` + this.card_video_link + `">` + this.card_title + `</a></h6>
-          <p class="d-inline"><span id="nr-views">` + this.card_views + `</span> views </p>
-          <p class="">Uploaded: <span>` + this.card_created_date_short + `</span></p>
-        </div>
-      </div>`
+        `<div class="col-md-2">
+<div class="small-video-wrapper">
+<img class="img-fluid" src="` + this.card_image + `" alt="">
+<h6 id="video-title"><a href="` + this.card_video_link + `">` + this.card_title + `</a></h6>
+<p class="d-inline"><span id="nr-views">` + this.card_views + `</span> views </p>
+<p class="">Uploaded: <span>` + this.card_created_date_short + `</span></p>
+</div>
+</div>`
     }
 
     get html_text_card() {
@@ -42,7 +42,7 @@ $(document).ready(() => {
 
   }
 
-//stuff necessary for slide menu to work
+  //stuff necessary for slide menu to work
   $('.button-collapse').sideNav({
     menuWidth: 300, // Default is 300
     edge: 'left', // Choose the horizontal origin
@@ -51,7 +51,7 @@ $(document).ready(() => {
     onOpen: function(el) {
       console.log("DA");
       //$(".justify-text").hide();
-      }, // A function to be called when sideNav is opened
+    }, // A function to be called when sideNav is opened
     onClose: function(el) {
       //$(".justify-text").show();
       console.log("NU");
@@ -60,12 +60,7 @@ $(document).ready(() => {
 
   $('.collapsible').collapsible();//init colapsible
 
-
-
-// --------------------- AJAX REQUESTS/POSTS ---------------------
-
-
-//------------------- FUNCTIONS FOR AJAX --------------------------
+  //------------------- FUNCTIONS FOR AJAX --------------------------
 
   function retrieve_user_info(userData) {
     data = apiRequest("GET", null, "user/" + userPageID + "?load=videos,subscribers", userData.token);
@@ -73,13 +68,13 @@ $(document).ready(() => {
       console.log("User info retrieved succesfully!");
       construct_card_videos(data.response.videos);
       insert_html_info(data.response);
+      check_subscription(data.response);
     } else {
       console.log("Error in retrieving subscribers list");
     }
   }
 
-
-//------------------- FUNCTIONS FOR HTML --------------------------
+  //------------------- FUNCTIONS FOR HTML --------------------------
 
   var carduri = [];
   var userPageID = "";
@@ -88,7 +83,7 @@ $(document).ready(() => {
   setup();
   //temp(); //only for testing purposes
 
-//retrieve data for subscribers from server only if user is loged in
+  //retrieve data for subscribers from server only if user is loged in
   function setup() {
     userData = loadUserData();
     userPageID = getUrlId();
@@ -98,9 +93,9 @@ $(document).ready(() => {
     } else {
       console.log("setup(): Error, user is not logged in! No videos to retrieve");
     }
-}
+  }
 
-//generate the subscriber objects
+  //generate the subscriber objects
   function construct_card_videos(data) {
     console.log(data);
     for (i = 0; i < data.length; i++) {
@@ -116,24 +111,44 @@ $(document).ready(() => {
   }
 
   //insert in html the necessary data of the user
-    function insert_html_info(data) {
-      $("#user_avatar_url").attr("src", data.avatar_url);
-      $("#user_cover_url").attr("src", data.cover_url);
-      $("#user_name").text(data.name);
-      $("#nr-subscribers").text(data.subscribers.length);
-      $("#user_description_text").text(data.description);
-      $("#user_details_text").text(data.details);
-      $("#user_details_links").text(data.links);
-      $("#user_created_date").text("Joined: " + data.created_at);
-      $("#user_lastUpdate_date").text("Last update: " + data.updated_at);
-    }
-
-//insert in the html page
-  function appendVideosHtml(index) {
-      $("#videos_list").append(carduri[index].html_text_card);
+  function insert_html_info(data) {
+    $("#user_avatar_url").attr("src", data.avatar_url);
+    $("#user_cover_url").attr("src", data.cover_url);
+    $("#user_name").text(data.name);
+    $("#nr-subscribers").text(data.subscribers.length);
+    $("#user_description_text").text(data.description);
+    $("#user_details_text").text(data.details);
+    $("#user_details_links").text(data.links);
+    $("#user_created_date").text("Joined: " + data.created_at);
+    $("#user_lastUpdate_date").text("Last update: " + data.updated_at);
   }
 
-//initialise the slide menu with the subscribers
+  //check user subscription
+  function check_subscription(data) {
+    channelData = data;
+
+    // check if the user is subscribed
+    for (var i = 0; i < channelData.subscribers.length; i++) {
+      if (channelData.subscribers[i].source_user_id == userData.id) {
+        subscriptionData = channelData.subscribers[i];
+        break;
+      }
+    }
+
+    // show the corresponding button
+    if (subscriptionData == null) {
+      $("#subscribe").show();
+    } else {
+      $("#unsubscribe").show();
+    }
+  }
+
+  //insert in the html page
+  function appendVideosHtml(index) {
+    $("#videos_list").append(carduri[index].html_text_card);
+  }
+
+  //initialise the slide menu with the subscribers
   function init(data) {
     for (i = 0; i < carduri.length; i++) {
       appendVideosHtml(i);

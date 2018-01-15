@@ -69,7 +69,7 @@ ul.sentiment{
   cursor: pointer;
 }
 
-button#subscribe{
+button#subscribe:not(.btn){
   background-color: red;
   color: white;
   padding: 0.25em 0.6154em;
@@ -80,7 +80,7 @@ button#subscribe{
   margin-bottom: 20px;
 }
 
-button#unsubscribe{
+button#unsubscribe:not(.btn){
   background-color: lightgray;
   color: black;
   padding: 0.25em 0.6154em;

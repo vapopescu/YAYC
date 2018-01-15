@@ -1,3 +1,6 @@
+/* Global Variables */
+var userData = null;
+
 /* send an API request to the platform */
 var apiRequest = function(requestType, requestBody, requestPath, token) {
   var urlBase = 'http://vps500832.ovh.net/api/v1/';
