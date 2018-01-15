@@ -229,8 +229,8 @@ $(document).ready(function() {
     videoObject = apiRequest("GET", null, 'video/' + "?load=user", userData.token); //retrieve data for videos
     //console.log(responseObject);
     channelData = responseObject.response;
-    videoData = videoObject.response;
-    construct_card_videos(videoData);
+    videoData_temp = videoObject.response;
+    construct_card_videos(videoData_temp);
 
     // populate the page
     $("#channel-avatar").attr("src", channelData.avatar_url);
