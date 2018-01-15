@@ -190,6 +190,7 @@ label.filter_mobile_collapse_button {
   overflow: hidden;
   font-style: 'Open Sans', sans-serif;
   display: block;
+  background-color: white;
 }
 
 /* adjusting the title */
@@ -261,11 +262,12 @@ label.filter_mobile_collapse_button {
 .card_title a {
   font-size: 22px;
   cursor: pointer;
-  color: black;
-  text-align: left;
+  color: #007bff;
+  text-align: left!important;
 }
 
 .card_text {
+  overflow: hidden;
   margin-top: 0px;
 }
 
