@@ -134,7 +134,7 @@ label.filter_mobile_collapse_button {
   float: right;
   width: 120px;
   margin-left: 10px;
-  top: 4px;
+  top: -2px;
   border: none!important;
 
 }
